@@ -13,7 +13,7 @@ User.destroy_all
 Genre.destroy_all
 
 puts '👤 Creating users...'
-josh = User.create(username: 'Josh', password: 'password', avatar_url: '')
+josh = User.create!(username: 'Josh', password: 'password', password_confirmation: 'password', avatar_url: '')
 
 puts '🎼 Creating genres...'
 Genre.create(name: 'Hip-Hop/Rap')

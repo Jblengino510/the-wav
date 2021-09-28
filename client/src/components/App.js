@@ -5,6 +5,7 @@ import NavBar from './NavBar';
 import LandingPage from './LandingPage';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
+import UserRoutes from './User/UserRoutes';
 
 function App() {
   const [ user, setUser ] = useState()
@@ -49,6 +50,9 @@ function App() {
           <Route path='/signup'>
             <SignupForm setUser={setUser}/>
           </Route>
+          <Route path={user ? `/${user.username}` : null}>
+            <UserRoutes user={user}/>
+          </Route>
           <Route path='/'>
             <LandingPage user={user}/>
           </Route>
@@ -62,6 +66,9 @@ function App() {
           </Route>
           <Route path='/signup'>
             <SignupForm setUser={setUser}/>
+          </Route>
+          <Route path={user ? `/${user.username}` : null}>
+            <UserRoutes user={user}/>
           </Route>
           <Route path='/'>
             <LandingPage user={user}/>

@@ -22,7 +22,7 @@ function LoginForm({ setUser }) {
         .then(res => {
             if (res.ok) {
                 res.json().then(user => setUser(user))
-                history.push('/')
+                history.push(`/${username}`)
             } else {
                 res.json().then(err => setErrors(err.errors))
             }
