@@ -9,7 +9,9 @@ import UserRoutes from './User/UserRoutes';
 
 function App() {
   const [ user, setUser ] = useState()
+  const [ beats, setBeats ] = useState([])
   const history = useHistory()
+  console.log(beats)
 
   useEffect(() => {
     fetch('/me')
@@ -20,6 +22,15 @@ function App() {
         })
      }
    })
+  }, [])
+
+  useEffect(() => {
+    fetch('/beats')
+    .then(res => {
+      if (res.ok) {
+        res.json().then(data => setBeats(data))
+      }
+    })
   }, [])
 
   function handleSignOut(){
@@ -51,7 +62,7 @@ function App() {
             <SignupForm setUser={setUser}/>
           </Route>
           <Route path={user ? `/${user.username}` : null}>
-            <UserRoutes user={user}/>
+            <UserRoutes user={user} setBeats={setBeats}/>
           </Route>
           <Route path='/'>
             <LandingPage user={user}/>
@@ -68,7 +79,7 @@ function App() {
             <SignupForm setUser={setUser}/>
           </Route>
           <Route path={user ? `/${user.username}` : null}>
-            <UserRoutes user={user}/>
+            <UserRoutes user={user} setBeats={setBeats}/>
           </Route>
           <Route path='/'>
             <LandingPage user={user}/>
