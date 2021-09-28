@@ -54,7 +54,7 @@ function App() {
           </Route>
         </Switch>  
       </> :
-        <>
+      <>
         <NavBar user={user} handleSignOut={handleSignOut}/>
         <Switch>
           <Route path='/login'>

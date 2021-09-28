@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :beats
+  resources :genres
   resources :users
 
   post '/signup', to: 'users#create'
