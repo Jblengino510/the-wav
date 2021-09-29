@@ -41,6 +41,7 @@ function BeatForm({ user, setBeats }) {
         .then(res => {
             if (res.ok) {
                 res.json().then(data => setBeats(data))
+                // history.push(`/${user.username}`)
             } else {
                 res.json().then(err => setErrors(err.errors))
             }
@@ -52,15 +53,16 @@ function BeatForm({ user, setBeats }) {
             <h1>Upload a Beat</h1>
             <form onSubmit={handleBeatSubmit}>
                 <h3>name</h3>
-                <input type='text' value={name} onChange={(e) => setName(e.target.value)} required/>
+                <input type='text' value={name} onChange={(e) => setName(e.target.value)}/>
                 <h3>genre</h3>
                 <select onChange={(e) => setGenre(e.target.value)}>
+                    <option value="">--</option>
                     {genreArr.map(genre => <option value={genre.id}>{genre.name}</option>)}
                 </select>
                 <h3>tempo</h3>
-                <input type='text' value={tempo} onChange={(e) => setTempo(e.target.value)} required/>
+                <input type='text' value={tempo} onChange={(e) => setTempo(e.target.value)}/>
                 <h3>price</h3>
-                <input type='text' value={price} onChange={(e) => setPrice(e.target.value)} required/>
+                <input type='text' value={price} onChange={(e) => setPrice(e.target.value)}/>
                 <h3>upload an mp3</h3>
                 <input type='file' accept="audio/*" onChange={(e) => setAudioData(e.target.files[0])} required/>
                 <input type='submit'/>

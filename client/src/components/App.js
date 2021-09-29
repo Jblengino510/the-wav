@@ -44,9 +44,13 @@ function App() {
     })
   }
 
-  // if (!user) return <LandingPage user={user}/>
-
-  // console.log(user)
+  function handleBeatDelete(id){
+    fetch(`/beats/${id}`, {
+        method: 'DELETE'
+    })
+    setBeats(beats.filter(beat => beat.id !== id))
+    history.push(`/${user.username}`)
+  }
 
 
   return (
@@ -61,7 +65,7 @@ function App() {
             <SignupForm setUser={setUser}/>
           </Route>
           <Route path={user ? `/${user.username}` : null}>
-            <UserRoutes user={user} setBeats={setBeats}/>
+            <UserRoutes user={user} beats={beats} setBeats={setBeats} handleBeatDelete={handleBeatDelete}/>
           </Route>
           <Route path='/'>
             <LandingPage user={user}/>

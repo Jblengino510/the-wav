@@ -14,6 +14,12 @@ class BeatsController < ApplicationController
         render json: beat, status: :created
     end
 
+    def destroy
+        beat = find_beat
+        beat.destroy
+        head :no_content
+    end
+
     private
 
     def find_beat
