@@ -11,7 +11,6 @@ function App() {
   const [ user, setUser ] = useState()
   const [ beats, setBeats ] = useState([])
   const history = useHistory()
-  console.log(beats)
 
   useEffect(() => {
     fetch('/me')
@@ -78,9 +77,9 @@ function App() {
           <Route path='/signup'>
             <SignupForm setUser={setUser}/>
           </Route>
-          <Route path={user ? `/${user.username}` : null}>
+          {/* <Route path={user ? `/${user.username}` : null}>
             <UserRoutes user={user} setBeats={setBeats}/>
-          </Route>
+          </Route> */}
           <Route path='/'>
             <LandingPage user={user}/>
           </Route>

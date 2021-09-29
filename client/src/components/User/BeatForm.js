@@ -12,8 +12,8 @@ function BeatForm({ user, setBeats }) {
     const [ errors, setErrors ] = useState([])
     const history = useHistory()
     let genreArr = allGenres
-    console.log('GENRE:', genre)
-    console.log('ERRORS:', errors)
+    // console.log('GENRE:', genre)
+    // console.log('ERRORS:', errors)
 
     useEffect(() => {
         fetch('/genres')
