@@ -32,7 +32,7 @@ function SignupForm({ setUser }) {
 
     return (
         <div>
-            <form onSubmit={handleSignUpSubmit}>
+            <form onSubmit={handleSignUpSubmit} autoComplete='off'>
                 <h3>username:</h3>
                 <input type='text' value={username} onChange={(e) => setUsername(e.target.value)}/>
                 <h3>password:</h3>

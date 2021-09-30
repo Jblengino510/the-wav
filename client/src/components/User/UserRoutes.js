@@ -3,17 +3,17 @@ import UserProfile from './UserProfile'
 import BeatForm from './BeatForm'
 import BeatDetails from './BeatDetails'
 
-function UserRoutes({ user, beats, setBeats, handleBeatDelete }) {
+function UserRoutes({ user, genres, beats, setBeats, handleBeatDelete, handlePlayClick }) {
     return (
         <Switch>
             <Route path={user ? `/${user.username}/upload` : null}>
-                <BeatForm user={user} setBeats={setBeats}/>
+                <BeatForm user={user} genres={genres} beats={beats} setBeats={setBeats}/>
             </Route>
             <Route path={user ? `/${user.username}/:id` : null}>
-                <BeatDetails user={user} handleBeatDelete={handleBeatDelete}/>
+                <BeatDetails user={user} genres={genres} handleBeatDelete={handleBeatDelete} handlePlayClick={handlePlayClick}/>
             </Route>
             <Route path={user ? `/${user.username}` : null}>
-                <UserProfile user={user} beats={beats}/>
+                <UserProfile user={user} beats={beats} setBeats={setBeats} handlePlayClick={handlePlayClick}/>
             </Route>
         </Switch>
     )

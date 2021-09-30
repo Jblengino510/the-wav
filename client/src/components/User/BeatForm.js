@@ -1,25 +1,17 @@
 import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
-function BeatForm({ user, setBeats }) {
+function BeatForm({ user, genres, beats, setBeats }) {
     const [ name, setName ] = useState('')
     const [ genre, setGenre ]  = useState('')
     const [ tempo, setTempo ] = useState('')
     const [ price, setPrice ] = useState('')
+    const [ plays, setPlays ] = useState(0)
     const [ audioData, setAudioData ] = useState(null)
     const [ sold, setSold ] = useState(false)
-    const [ allGenres, setAllGenres ] = useState([])
     const [ errors, setErrors ] = useState([])
     const history = useHistory()
-    let genreArr = allGenres
-    // console.log('GENRE:', genre)
-    // console.log('ERRORS:', errors)
-
-    useEffect(() => {
-        fetch('/genres')
-        .then(res => res.json())
-        .then(setAllGenres)
-    }, [])
+    let genreArr = genres
 
 
     function handleBeatSubmit(e){
@@ -31,6 +23,7 @@ function BeatForm({ user, setBeats }) {
         formData.append('name', name)
         formData.append('tempo', parseInt(tempo))
         formData.append('price', parseInt(price))
+        formData.append('plays', plays)
         formData.append('audio_data', audioData)
         formData.append('is_sold', sold)
 
@@ -40,8 +33,8 @@ function BeatForm({ user, setBeats }) {
         })
         .then(res => {
             if (res.ok) {
-                res.json().then(data => setBeats(data))
-                // history.push(`/${user.username}`)
+                res.json().then(data => setBeats([data, ...beats]))
+                history.push(`/${user.username}`)
             } else {
                 res.json().then(err => setErrors(err.errors))
             }
@@ -51,7 +44,7 @@ function BeatForm({ user, setBeats }) {
     return (
         <div>
             <h1>Upload a Beat</h1>
-            <form onSubmit={handleBeatSubmit}>
+            <form onSubmit={handleBeatSubmit} autoComplete='off'>
                 <h3>name</h3>
                 <input type='text' value={name} onChange={(e) => setName(e.target.value)}/>
                 <h3>genre</h3>

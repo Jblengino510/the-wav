@@ -6,10 +6,25 @@ import LandingPage from './LandingPage';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 import UserRoutes from './User/UserRoutes';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Container from '@mui/material/Container';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#FFFFFF'
+    },
+    text: {
+      primary: '#FFFFFF'
+    }
+  }
+})
+
 
 function App() {
   const [ user, setUser ] = useState()
   const [ beats, setBeats ] = useState([])
+  const [ genres, setGenres ] = useState([])
   const history = useHistory()
 
   useEffect(() => {
@@ -23,6 +38,7 @@ function App() {
    })
   }, [])
 
+
   useEffect(() => {
     fetch('/beats')
     .then(res => {
@@ -31,6 +47,17 @@ function App() {
       }
     })
   }, [])
+
+
+  useEffect(() => {
+    fetch('/genres')
+    .then(res => {
+      if (res.ok) {
+        res.json().then(data => setGenres(data))
+      }
+    })
+  }, [])
+
 
   function handleSignOut(){
     fetch('/logout', {
@@ -44,6 +71,7 @@ function App() {
     })
   }
 
+
   function handleBeatDelete(id){
     fetch(`/beats/${id}`, {
         method: 'DELETE'
@@ -53,41 +81,63 @@ function App() {
   }
 
 
+  function handlePlayClick(beat){
+    const beatPlays = {
+        plays: beat.plays + 1
+    }
+    fetch(`/beats/${beat.id}`, {
+       method: 'PATCH',
+       headers: {'Content-Type': 'application/json'},
+       body: JSON.stringify(beatPlays)
+    })
+  }
+
+
   return (
     <>
-      {user ? <>
-        <NavBar user={user} handleSignOut={handleSignOut}/>
-        <Switch>
-          <Route path='/login'>
-            <LoginForm setUser={setUser}/>
-          </Route>
-          <Route path='/signup'>
-            <SignupForm setUser={setUser}/>
-          </Route>
-          <Route path={user ? `/${user.username}` : null}>
-            <UserRoutes user={user} beats={beats} setBeats={setBeats} handleBeatDelete={handleBeatDelete}/>
-          </Route>
-          <Route path='/'>
-            <LandingPage user={user}/>
-          </Route>
-        </Switch>  
-      </> :
+      {user ? 
       <>
-        <NavBar user={user} handleSignOut={handleSignOut}/>
-        <Switch>
-          <Route path='/login'>
-            <LoginForm setUser={setUser}/>
-          </Route>
-          <Route path='/signup'>
-            <SignupForm setUser={setUser}/>
-          </Route>
-          {/* <Route path={user ? `/${user.username}` : null}>
-            <UserRoutes user={user} setBeats={setBeats}/>
-          </Route> */}
-          <Route path='/'>
-            <LandingPage user={user}/>
-          </Route>
-        </Switch>  
+        <ThemeProvider theme={theme}>
+        <Container sx={{bgcolor: '', color: 'white'}}>
+          <NavBar user={user} handleSignOut={handleSignOut}/>
+          <Switch>
+            <Route path='/login'>
+              <LoginForm setUser={setUser}/>
+            </Route>
+            <Route path='/signup'>
+              <SignupForm setUser={setUser}/>
+            </Route>
+            <Route path={user ? `/${user.username}` : null}>
+              <UserRoutes user={user} genres={genres} beats={beats} setBeats={setBeats} handleBeatDelete={handleBeatDelete} handlePlayClick={handlePlayClick}/>
+            </Route>
+            <Route path='/'>
+              <LandingPage user={user}/>
+            </Route>
+          </Switch>
+        </Container>  
+        </ThemeProvider>
+      </> 
+      :
+      <>
+        <ThemeProvider theme={theme}>
+        <Container sx={{bgcolor: '', color: 'white'}}>
+          <NavBar user={user} handleSignOut={handleSignOut}/>
+          <Switch>
+            <Route path='/login'>
+              <LoginForm setUser={setUser}/>
+            </Route>
+            <Route path='/signup'>
+              <SignupForm setUser={setUser}/>
+            </Route>
+            {/* <Route path={user ? `/${user.username}` : null}>
+              <UserRoutes user={user} setBeats={setBeats}/>
+            </Route> */}
+            <Route path='/'>
+              <LandingPage user={user}/>
+            </Route>
+          </Switch>  
+        </Container>  
+        </ThemeProvider>
       </>
       }
     </>

@@ -33,7 +33,7 @@ function LoginForm({ setUser }) {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} autoComplete='off'>
                 <h3>username:</h3>
                 <input 
                 type="text"

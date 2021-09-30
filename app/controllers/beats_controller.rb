@@ -1,7 +1,7 @@
 class BeatsController < ApplicationController
 
     def index
-        render json: Beat.all
+        render json: Beat.all.order(id: :desc)
     end
     
     def show
@@ -12,6 +12,12 @@ class BeatsController < ApplicationController
     def create
         beat = Beat.create!(beat_params)
         render json: beat, status: :created
+    end
+
+    def update
+        beat = find_beat
+        beat.update!(beat_params)
+        render json: beat, status: :accepted
     end
 
     def destroy
@@ -27,6 +33,6 @@ class BeatsController < ApplicationController
     end
 
     def beat_params
-        params.permit(:user_id, :genre_id, :name, :tempo, :price, :is_sold, :date_sold, :audio_data)
+        params.permit(:user_id, :genre_id, :name, :tempo, :price, :plays, :is_sold, :date_sold, :audio_data)
     end
 end

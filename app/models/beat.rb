@@ -1,6 +1,7 @@
 class Beat < ApplicationRecord
   belongs_to :user
   belongs_to :genre
+  has_many :likes
   has_one_attached :audio_data
 
   validates :name, presence: true
