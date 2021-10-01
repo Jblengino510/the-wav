@@ -25,3 +25,20 @@ html, body {
   align-items: center;
   color: white;
 }
+
+.dropzone {
+  height: 8rem;
+  margin: 1rem;
+  padding: 1rem;
+  border: 2px dashed #14213d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.active {
+  border: 2px solid green;
+}

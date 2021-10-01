@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useHistory } from 'react-router-dom'
+import { useDropzone } from 'react-dropzone'
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+
 
 function BeatForm({ user, genres, beats, setBeats }) {
     const [ name, setName ] = useState('')
@@ -9,28 +11,28 @@ function BeatForm({ user, genres, beats, setBeats }) {
     const [ tempo, setTempo ] = useState('')
     const [ price, setPrice ] = useState('')
     const [ plays, setPlays ] = useState(0)
-    const [ audioData, setAudioData ] = useState(null)
     const [ audioUrl, setAudioUrl ] = useState()
     const [ sold, setSold ] = useState(false)
     const [ errors, setErrors ] = useState([])
     const history = useHistory()
     let genreArr = genres
-    // console.log(audioUrl)
 
 
-    function handleAudioUpload(e){
-        e.preventDefault()
-        const formData = new FormData()
-        formData.append('file', audioData)
-        formData.append('upload_preset', 'thewav')
-        formData.append('cloud_name', 'dczg4dzfm')
-        fetch('https://api.cloudinary.com/v1_1/dczg4dzfm/video/upload', {
-            method: 'POST',
-            body: formData
+    const onDrop = useCallback(acceptedFiles => {
+        acceptedFiles.forEach(file => {
+            const formData = new FormData()
+            formData.append('file', file)
+            formData.append('upload_preset', 'thewav')
+            formData.append('cloud_name', 'dczg4dzfm')
+            fetch('https://api.cloudinary.com/v1_1/dczg4dzfm/video/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => setAudioUrl(data.url))
         })
-        .then(res => res.json())
-        .then(data => setAudioUrl(data.url))
-    }
+      }, [])
+    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop, accepts: 'audio/*', multiple: false})
 
 
     function handleBeatSubmit(e){
@@ -63,11 +65,10 @@ function BeatForm({ user, genres, beats, setBeats }) {
     return (
         <div>
             <h1>Upload a Beat</h1>
-            <form onSubmit={handleAudioUpload}>
-            <h3>upload audio here</h3>
-                <input type='file' accept='audio/*' onChange={(e) => setAudioData(e.target.files[0])} required/>
-                <Button type='submit' variant='contained' endIcon={<CloudUploadIcon />}>Upload</Button>
-            </form>
+            <div {...getRootProps()} className={`dropzone ${isDragActive ? 'active' : null}`}>
+                <input {...getInputProps()}/>
+                Drag and drop your beats here
+            </div>
             {audioUrl ? 
             <form onSubmit={handleBeatSubmit} autoComplete='off'>
                 <h3>name</h3>

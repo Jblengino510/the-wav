@@ -22,7 +22,7 @@ function BeatDetails({ user, handleBeatDelete, handlePlayClick, genres }) {
     const [ errors, setErrors ] = useState([])
     const params = useParams()
     let genreArr = genres
-    // console.log(beat.name)
+
 
     useEffect(() => {
         fetch(`/beats/${params.id}`)
