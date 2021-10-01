@@ -69,7 +69,7 @@ function BeatDetails({ user, handleBeatDelete, handlePlayClick, genres }) {
                 <em>{beat.genre.name}</em>
                 <h4>{beat.tempo} bpm</h4>
                 <h4 onClick={() => handlePlayClick(beat)}>${beat.price}.00</h4>
-                    <AudioPlayer onClick={() => handlePlayClick(beat)} src={beat.audio_data} controls/>
+                    <AudioPlayer onClick={() => handlePlayClick(beat)} src={beat.audio_url} controls/>
                     <p>▶️&nbsp; {beat.plays ? beat.plays : 0} &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; ❤️ &nbsp;{beat.likes ? beat.likes.length : 0}</p>
                 <br></br>
                 <br></br>

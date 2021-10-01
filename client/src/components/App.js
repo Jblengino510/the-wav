@@ -25,6 +25,7 @@ function App() {
   const [ user, setUser ] = useState()
   const [ beats, setBeats ] = useState([])
   const [ genres, setGenres ] = useState([])
+  const [ likes, setLikes ] = useState([])
   const history = useHistory()
 
   useEffect(() => {
@@ -92,6 +93,20 @@ function App() {
     })
   }
 
+  function handleLikeClick(user, beat){
+    const likeObj = {
+      user_id: user.id,
+      beat_id: beat.id
+    }
+    fetch('/likes', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(likeObj)
+    })
+    .then(res => res.json())
+    .then(data => setLikes(data))
+  }
+
 
   return (
     <>
@@ -108,7 +123,7 @@ function App() {
               <SignupForm setUser={setUser}/>
             </Route>
             <Route path={user ? `/${user.username}` : null}>
-              <UserRoutes user={user} genres={genres} beats={beats} setBeats={setBeats} handleBeatDelete={handleBeatDelete} handlePlayClick={handlePlayClick}/>
+              <UserRoutes user={user} genres={genres} beats={beats} setBeats={setBeats} handleBeatDelete={handleBeatDelete} handlePlayClick={handlePlayClick} handleLikeClick={handleLikeClick}/>
             </Route>
             <Route path='/'>
               <LandingPage user={user}/>
