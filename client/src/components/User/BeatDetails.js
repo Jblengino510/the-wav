@@ -20,6 +20,7 @@ function BeatDetails({ user, genres, handleBeatDelete, handlePlayClick, handleLi
     const [ tempo, setTempo ] = useState('')
     const [ price, setPrice ] = useState('')
     const [ errors, setErrors ] = useState([])
+    const [ likeClicked, setLikeClicked ] = useState(false)
     const params = useParams()
     let genreArr = genres
 
@@ -56,6 +57,11 @@ function BeatDetails({ user, genres, handleBeatDelete, handlePlayClick, handleLi
         })
     }
 
+    function toggleLike(user, beat){
+        handleLikeClick(user, beat)
+        setLikeClicked(!likeClicked)
+    }
+
     function handleClose(){
         setOpen(false)
     }
@@ -68,11 +74,11 @@ function BeatDetails({ user, genres, handleBeatDelete, handlePlayClick, handleLi
                 <h2>{beat.name}</h2>
                 <em>{beat.genre.name}</em>
                 <h4>{beat.tempo} bpm</h4>
-                <h4 onClick={() => handlePlayClick(beat)}>${beat.price}.00</h4>
+                <h4>${beat.price}.00</h4>
                 <div onClick={() => handlePlayClick(beat)}>
                 <AudioPlayer src={beat.audio_url} controls/>
                 </div>
-                <p onClick={() => handleLikeClick(user, beat)}>▶️&nbsp; {beat.plays ? beat.plays : 0} &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; ❤️ &nbsp;{beat.likes ? beat.likes.length : 0}</p>
+                <p onClick={() => toggleLike(user, beat)}>▶️&nbsp; {beat.plays ? beat.plays : 0} &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; ❤️ &nbsp;{likeClicked ? beat.likes.length + 1 : beat.likes.length }</p>
                 <br></br>
                 <br></br>
                 <Button size='large' onClick={() => setOpen(true)}>Edit</Button>
