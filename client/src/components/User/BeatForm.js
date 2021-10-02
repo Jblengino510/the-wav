@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { useDropzone } from 'react-dropzone'
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import LinearProgress from '@mui/material/LinearProgress';
 
 
 function BeatForm({ user, genres, beats, setBeats }) {
@@ -68,6 +69,7 @@ function BeatForm({ user, genres, beats, setBeats }) {
             <div {...getRootProps()} className={`dropzone ${isDragActive ? 'active' : null}`}>
                 <input {...getInputProps()}/>
                 Drag and drop your beats here
+                {/* <Button variant='contained' color='primary'>or click to choose files</Button> */}
             </div>
             {audioUrl ? 
             <form onSubmit={handleBeatSubmit} autoComplete='off'>

@@ -47,7 +47,7 @@ function App() {
         res.json().then(data => setBeats(data))
       }
     })
-  }, [])
+  }, [likes])
 
 
   useEffect(() => {
@@ -103,8 +103,13 @@ function App() {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(likeObj)
     })
-    .then(res => res.json())
-    .then(data => setLikes(data))
+    .then(res => {
+      if (res.status === 200) {
+        res.json().then(data => setLikes(data))
+      } else if (res.status === 204) {
+        res.json().then(data => setLikes(data))
+      }
+    })
   }
 
 

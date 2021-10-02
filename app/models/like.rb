@@ -2,5 +2,5 @@ class Like < ApplicationRecord
   belongs_to :user
   belongs_to :beat
 
-  validates :user_id, uniqueness: true
+  validates :beat_id, uniqueness: { scope: :user }
 end

@@ -10,7 +10,7 @@ function UserRoutes({ user, genres, beats, setBeats, handleBeatDelete, handlePla
                 <BeatForm user={user} genres={genres} beats={beats} setBeats={setBeats}/>
             </Route>
             <Route path={user ? `/${user.username}/:id` : null}>
-                <BeatDetails user={user} genres={genres} handleBeatDelete={handleBeatDelete} handlePlayClick={handlePlayClick}/>
+                <BeatDetails user={user} genres={genres} handleBeatDelete={handleBeatDelete} handlePlayClick={handlePlayClick} handleLikeClick={handleLikeClick}/>
             </Route>
             <Route path={user ? `/${user.username}` : null}>
                 <UserProfile user={user} beats={beats} setBeats={setBeats} handlePlayClick={handlePlayClick} handleLikeClick={handleLikeClick}/>

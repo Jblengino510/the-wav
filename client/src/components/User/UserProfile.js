@@ -1,13 +1,21 @@
+import { useState } from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import ReactAudioPlayer from 'react-audio-player'
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import Button from '@mui/material/Button';
 
+
 function UserProfile({ user, beats, setBeats, handlePlayClick, handleLikeClick }) {
+    const [ likeClicked, setLikeClicked ] = useState(false)
     const history = useHistory()
     const userBeats = beats ? beats.filter(beat => beat.user_id === user.id) : null
     // console.log(userBeats)
+
+    function toggleLike(user, beat){
+        handleLikeClick(user, beat)
+        setLikeClicked(!likeClicked)
+    }
   
 
     return (
@@ -23,7 +31,7 @@ function UserProfile({ user, beats, setBeats, handlePlayClick, handleLikeClick }
                     <h4>{beat.tempo} bpm</h4>
                     <h4 onClick={() => handlePlayClick(beat)}>${beat.price}.00</h4>
                     <AudioPlayer onClick={() => handlePlayClick(beat)} src={beat.audio_url} controls/>
-                    <p>▶️&nbsp; {beat.plays ? beat.plays : 0} &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;❤️ &nbsp;{beat.likes ? beat.likes.length : 0}</p>
+                    <p onClick={() => toggleLike(user, beat)}>▶️&nbsp; {beat.plays ? beat.plays : 0} &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;❤️ &nbsp;{likeClicked ? beat.likes.length + 1 : beat.likes.length }</p>
                 </div>
                 )}
             </>
