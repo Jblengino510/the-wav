@@ -16,8 +16,8 @@ html, body {
   transform: translate(-50%, -50%);
   width: 400px;
   min-height: 400px;
-  background-color: #222222;
-  border: 5px solid #333333;
+  background-color: #000000;
+  border: 3px solid #222222;
   box-shadow: 24px;
   display: flex;
   flex-direction: column;
@@ -30,7 +30,7 @@ html, body {
   height: 8rem;
   margin: 1rem;
   padding: 1rem;
-  border: 2px dashed #14213d;
+  border: 2px dashed #001c55;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,4 +41,8 @@ html, body {
 
 .active {
   border: 2px solid green;
+}
+
+.navBar {
+  color: white;
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import Button from '@mui/material/Button';
 
 function SignupForm({ setUser }) {
     const [ username, setUsername ] = useState('')
@@ -41,7 +42,7 @@ function SignupForm({ setUser }) {
                 <input type='password' value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}/>
                 <br></br>
                 <br></br>
-                <button type='submit'>Get Started</button>
+                <Button type='submit' variant='contained'>Get Started</Button>
             </form>
             {(errors.length > 0) ?
                 (<div>

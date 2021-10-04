@@ -81,8 +81,8 @@ function BeatDetails({ user, genres, handleBeatDelete, handlePlayClick, handleLi
                 <p onClick={() => toggleLike(user, beat)}>▶️&nbsp; {beat.plays ? beat.plays : 0} &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; ❤️ &nbsp;{likeClicked ? beat.likes.length + 1 : beat.likes.length }</p>
                 <br></br>
                 <br></br>
-                <Button size='large' onClick={() => setOpen(true)}>Edit</Button>
-                <Button size='large' onClick={() => handleBeatDelete(beat.id)}>Delete</Button>
+                <Button size='large'  variant='contained' onClick={() => setOpen(true)}>Edit</Button>
+                <Button size='large' variant='contained' onClick={() => handleBeatDelete(beat.id)}>Delete</Button>
                 <Modal 
                 open={open} 
                 onClose={!open} 
@@ -91,7 +91,7 @@ function BeatDetails({ user, genres, handleBeatDelete, handlePlayClick, handleLi
                 >
                     <Box className='modalForm'>
                         <IconButton onClick={handleClose}>
-                            <CloseIcon />
+                            <CloseIcon sx={{color: '#222222', ml: '350px', mt: '5px'}}/>
                         </IconButton>
                         <form onSubmit={handleEditBeat} autoComplete='off'>
                             <h3>name</h3>

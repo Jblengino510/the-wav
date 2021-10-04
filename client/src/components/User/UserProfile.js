@@ -10,7 +10,7 @@ function UserProfile({ user, beats, setBeats, handlePlayClick, handleLikeClick }
     const [ likeClicked, setLikeClicked ] = useState(false)
     const history = useHistory()
     const userBeats = beats ? beats.filter(beat => beat.user_id === user.id) : null
-    // console.log(userBeats)
+  
 
     function toggleLike(user, beat){
         handleLikeClick(user, beat)

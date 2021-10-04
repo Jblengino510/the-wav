@@ -33,6 +33,6 @@ class BeatsController < ApplicationController
     end
 
     def beat_params
-        params.permit(:user_id, :genre_id, :name, :tempo, :price, :plays, :is_sold, :date_sold, :audio_url)
+        params.permit(:user_id, :genre_id, :name, :tempo, :price, :plays, :is_sold, :date_sold, :audio_url, :wave_form_url)
     end
 end

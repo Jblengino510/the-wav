@@ -13,6 +13,7 @@ function BeatForm({ user, genres, beats, setBeats }) {
     const [ price, setPrice ] = useState('')
     const [ plays, setPlays ] = useState(0)
     const [ audioUrl, setAudioUrl ] = useState()
+    const [ waveFormUrl, setWaveFormUrl ] = useState('')
     const [ sold, setSold ] = useState(false)
     const [ errors, setErrors ] = useState([])
     const history = useHistory()
@@ -48,6 +49,7 @@ function BeatForm({ user, genres, beats, setBeats }) {
         formData.append('plays', plays)
         formData.append('audio_url', audioUrl)
         formData.append('is_sold', sold)
+        formData.append('wave_form_url', waveFormUrl)
 
         fetch('/beats', {
             method: 'POST',

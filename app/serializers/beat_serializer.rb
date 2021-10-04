@@ -1,6 +1,6 @@
 class BeatSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
-  attributes :id, :user_id, :genre_id, :name, :tempo, :price, :plays, :is_sold, :date_sold, :audio_url, :created_at
+  attributes :id, :user_id, :genre_id, :name, :tempo, :price, :plays, :is_sold, :date_sold, :audio_url, :created_at, :wave_form_url
 
   has_one :user
   has_one :genre

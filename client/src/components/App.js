@@ -12,6 +12,9 @@ import Container from '@mui/material/Container';
 const theme = createTheme({
   palette: {
     primary: {
+      main: '#001c55'
+    },
+    secondary: {
       main: '#FFFFFF'
     },
     text: {

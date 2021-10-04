@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import Button from '@mui/material/Button';
 
 function LoginForm({ setUser }) {
     const [ username, setUsername ] = useState('')
@@ -48,7 +49,7 @@ function LoginForm({ setUser }) {
                 />
                 <br></br>
                 <br></br>
-                <button type='submit'>Log In</button>
+                <Button type='submit' variant='contained'>Log In</Button>
             </form>
             {(errors.length > 0) ?
                 (<div>
