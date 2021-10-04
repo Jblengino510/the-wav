@@ -6,6 +6,7 @@ import LandingPage from './LandingPage';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 import UserRoutes from './User/UserRoutes';
+import BeatLibrary from './BeatLibrary';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 
@@ -121,9 +122,12 @@ function App() {
       {user ? 
       <>
         <ThemeProvider theme={theme}>
-        <Container sx={{bgcolor: '', color: 'white'}}>
+        <Container sx={{color: 'white'}}>
           <NavBar user={user} handleSignOut={handleSignOut}/>
           <Switch>
+            <Route path='/beats'>
+              <BeatLibrary beats={beats}/>
+            </Route>
             <Route path='/login'>
               <LoginForm setUser={setUser}/>
             </Route>

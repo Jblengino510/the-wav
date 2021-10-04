@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -14,6 +14,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Settings from '@mui/icons-material/Settings';
 import PowerSettingsNew from '@mui/icons-material/PowerSettingsNew';
 import Insights from '@mui/icons-material/Insights';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Divider from '@mui/material/Divider';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -59,13 +60,13 @@ function NavBar({ user, handleSignOut }) {
                 <AppBar position='sticky' sx={{bgcolor: '#000000', color: 'white', width: '100%', padding: '10px'}}>
                     <Toolbar>
                         <Typography variant='h4' sx={{flexGrow: 1}}>
-                            ∿ The Wav ∿
+                            <strong>∿ The Wav ∿</strong>
                         </Typography>
-                        <Box sx={{width: '30%', bgcolor: ''}}>
+                        <Box sx={{width: '25%'}}>
                             <Tabs value={value} onChange={handleChange} textColor='secondary' indicatorColor='primary'>
-                                <LinkTab label="Page One" href="/drafts" sx={{color: 'white'}}/>
-                                <LinkTab label="Page Two" href="/trash" sx={{color: 'white'}}/>
-                                <LinkTab label="Page Three" href="/spam" sx={{color: 'white'}}/>
+                                <LinkTab label={<strong>Home</strong>} onClick={() => history.push('/')} sx={{color: 'white'}}/>
+                                <LinkTab label={<strong>Beats</strong>} onClick={() => history.push('/beats')} sx={{color: 'white'}}/>
+                                <LinkTab icon={<ShoppingCartOutlinedIcon color='secondary' sx={{width: 28, height: 28}}/>} />
                             </Tabs>
                         </Box>
                         <IconButton
@@ -78,7 +79,7 @@ function NavBar({ user, handleSignOut }) {
                         color='secondary'
                         >
                             <Avatar sx={{width: 32, height: 32, mr: '10px'}}></Avatar>
-                            <Typography sx={{mr: '5px'}}>{user.username}</Typography>
+                            <Typography sx={{mr: '5px'}}><strong>{user.username}</strong></Typography>
                             <KeyboardArrowDownIcon onClick={handleClick}/>
                         </IconButton> 
                         <Menu anchorEl={anchorEl} open={open} onClose={handleClose} onClick={handleClose} PaperProps={{
@@ -145,11 +146,17 @@ function NavBar({ user, handleSignOut }) {
             <>
                 <AppBar position='static' sx={{bgcolor: '#000000', color: 'white', width: '100%', padding: '10px'}}>
                     <Toolbar>
-                        <Typography variant='h3' sx={{flexGrow: 1}}>
-                            ∿ The Wav ∿
+                        <Typography variant='h4' sx={{flexGrow: 1}}>
+                            <strong>∿ The Wav ∿</strong>
                         </Typography>
-                        <Button onClick={() => history.push('/signup')} size='large' sx={{color: 'white'}}>Sign Up</Button>
-                        <Button onClick={() => history.push('/login')} size='large' sx={{color: 'white'}}>Log In</Button>
+                        <Box sx={{width: '25%'}}>
+                            <Tabs value={value} onChange={handleChange} textColor='secondary' indicatorColor='primary'>
+                                <LinkTab label="Home" onClick={() => history.push('/')} sx={{color: 'white'}}/>
+                                <LinkTab label="Beats" onClick={() => history.push('/beats')} sx={{color: 'white'}}/>
+                                <LinkTab label={<strong>Sign Up</strong>} onClick={() => history.push('/signup')} sx={{color: 'white'}}/>
+                                <LinkTab label={<strong>Log In</strong>} onClick={() => history.push('/login')} sx={{color: 'white'}}/>
+                            </Tabs>
+                        </Box>
                     </Toolbar>
                 </AppBar>
             </>

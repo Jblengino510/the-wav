@@ -4,6 +4,12 @@ import { useDropzone } from 'react-dropzone'
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import LinearProgress from '@mui/material/LinearProgress';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+
 
 
 function BeatForm({ user, genres, beats, setBeats }) {
@@ -13,6 +19,8 @@ function BeatForm({ user, genres, beats, setBeats }) {
     const [ price, setPrice ] = useState('')
     const [ plays, setPlays ] = useState(0)
     const [ audioUrl, setAudioUrl ] = useState()
+    const [ image, setImage ] = useState(null)
+    const [ imageUrl, setImageUrl ] = useState('')
     const [ waveFormUrl, setWaveFormUrl ] = useState('')
     const [ sold, setSold ] = useState(false)
     const [ errors, setErrors ] = useState([])
@@ -37,6 +45,21 @@ function BeatForm({ user, genres, beats, setBeats }) {
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop, accepts: 'audio/*', multiple: false})
 
 
+    function handleImageUpload(e){
+        e.preventDefault()
+        const formData = new FormData()
+        formData.append('file', image)
+        formData.append('upload_preset', 'thewav')
+        formData.append('cloud_name', 'dczg4dzfm')
+        fetch('https://api.cloudinary.com/v1_1/dczg4dzfm/image/upload', {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => setImageUrl(data.url))
+    }
+
+
     function handleBeatSubmit(e){
         e.preventDefault()
 
@@ -49,6 +72,7 @@ function BeatForm({ user, genres, beats, setBeats }) {
         formData.append('plays', plays)
         formData.append('audio_url', audioUrl)
         formData.append('is_sold', sold)
+        formData.append('image_url', imageUrl)
         formData.append('wave_form_url', waveFormUrl)
 
         fetch('/beats', {
@@ -64,32 +88,46 @@ function BeatForm({ user, genres, beats, setBeats }) {
             }
         })
     }
+
     
     return (
-        <div>
+        <Container sx={{bgcolor: '#1B1B1B'}}>
             <h1>Upload a Beat</h1>
             <div {...getRootProps()} className={`dropzone ${isDragActive ? 'active' : null}`}>
                 <input {...getInputProps()}/>
                 Drag and drop your beats here
                 {/* <Button variant='contained' color='primary'>or click to choose files</Button> */}
             </div>
-            {audioUrl ? 
-            <form onSubmit={handleBeatSubmit} autoComplete='off'>
-                <h3>name</h3>
-                <input type='text' value={name} onChange={(e) => setName(e.target.value)}/>
-                <h3>genre</h3>
-                <select onChange={(e) => setGenre(e.target.value)}>
-                    <option value="">--</option>
-                    {genreArr.map(genre => <option value={genre.id}>{genre.name}</option>)}
-                </select>
-                <h3>tempo</h3>
-                <input type='text' value={tempo} onChange={(e) => setTempo(e.target.value)}/>
-                <h3>price</h3>
-                <input type='text' value={price} onChange={(e) => setPrice(e.target.value)}/>
-                <br></br>
-                <br></br>
-                <Button type='submit' variant='contained'>Submit</Button>
-            </form> 
+            {audioUrl ?
+            <Grid container spacing={2} sx={{bgcolor: 'white', mt: '20px'}}>
+                <Grid item xs={6} sx={imageUrl ? {backgroundImage: `url(${imageUrl})`, backgroundSize: 'cover', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'} : {bgcolor: '#000000', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                    <h1>add cover art</h1>
+                    <form onSubmit={handleImageUpload}>
+                        <input type='file' accept='image/*' onChange={(e) => setImage(e.target.files[0])}/>
+                        <br></br>
+                        <br></br>
+                        {image ? <Button type='submit' variant='contained' sx={{alignItems: 'center'}}>Upload image</Button> : null}
+                    </form>
+                </Grid>
+                <Grid item xs={6} sx={{bgcolor: 'red'}}>
+                <form onSubmit={handleBeatSubmit} autoComplete='off'>
+                    <h3>name</h3>
+                    <input type='text' value={name} onChange={(e) => setName(e.target.value)}/>
+                    <h3>genre</h3>
+                    <select onChange={(e) => setGenre(e.target.value)}>
+                        <option value="">--</option>
+                        {genreArr.map(genre => <option value={genre.id}>{genre.name}</option>)}
+                    </select>
+                    <h3>tempo</h3>
+                    <input type='text' value={tempo} onChange={(e) => setTempo(e.target.value)}/>
+                    <h3>price</h3>
+                    <input type='text' value={price} onChange={(e) => setPrice(e.target.value)}/>
+                    <br></br>
+                    <br></br>
+                    <Button type='submit' variant='contained'>Submit</Button>
+                </form> 
+                </Grid>
+            </Grid> 
             :
             null
             }
@@ -100,7 +138,7 @@ function BeatForm({ user, genres, beats, setBeats }) {
                 :
                 null
             }
-        </div>
+        </Container>
     )
 }
 
