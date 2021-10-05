@@ -66,7 +66,7 @@ function NavBar({ user, handleSignOut }) {
                             <Tabs value={value} onChange={handleChange} textColor='secondary' indicatorColor='primary'>
                                 <LinkTab label={<strong>Home</strong>} onClick={() => history.push('/')} sx={{color: 'white'}}/>
                                 <LinkTab label={<strong>Beats</strong>} onClick={() => history.push('/beats')} sx={{color: 'white'}}/>
-                                <LinkTab icon={<ShoppingCartOutlinedIcon color='secondary' sx={{width: 28, height: 28}}/>} />
+                                <LinkTab icon={<ShoppingCartOutlinedIcon color='secondary' onClick={() => history.push(`/${user.username}/cart`)} sx={{width: 28, height: 28}}/>} />
                             </Tabs>
                         </Box>
                         <IconButton

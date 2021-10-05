@@ -26,12 +26,14 @@ const theme = createTheme({
 
 
 function App() {
-  const [ user, setUser ] = useState()
+  const [ user, setUser ] = useState({})
   const [ beats, setBeats ] = useState([])
   const [ genres, setGenres ] = useState([])
   const [ likes, setLikes ] = useState([])
+  const [ carts, setCarts ] = useState([])
   const history = useHistory()
   // console.log(user.id)
+  // console.log(carts)
 
   useEffect(() => {
     fetch('/me')
@@ -65,14 +67,24 @@ function App() {
   }, [])
 
 
-  // useEffect(() => {
-  //   fetch(`/users/${user.id}/likes`)
-  //   .then(res => {
-  //     if (res.ok) {
-  //       res.json().then(data => setLikes(data))
-  //     }
-  //   })
-  // }, [])
+  useEffect(() => {
+    fetch(`/users/${user.id}/likes`)
+    .then(res => {
+      if (res.ok) {
+        res.json().then(data => setLikes(data))
+      }
+    })
+  }, [user])
+
+
+  useEffect(() => {
+    fetch('/carts')
+    .then(res => {
+      if (res.ok) {
+        res.json().then(data => setCarts(data))
+      }
+    })
+  }, [])
 
 
   function handleSignOut(){
@@ -108,6 +120,7 @@ function App() {
     })
   }
 
+
   function handleLikeClick(user, beat){
     const likeObj = {
       user_id: user.id,
@@ -128,6 +141,23 @@ function App() {
   }
 
 
+  function handleAddToCart(e, user, beat){
+    e.preventDefault()
+    const cartObj = {
+      user_id: user.id,
+      beat_id: beat.id
+    }
+    fetch('/carts', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(cartObj)
+    })
+    .then(res => res.json())
+    .then(data => setCarts([data, ...carts]))
+  }
+
+
+
   return (
     <>
       {user ? 
@@ -137,7 +167,7 @@ function App() {
           <NavBar user={user} handleSignOut={handleSignOut}/>
           <Switch>
             <Route path='/beats'>
-              <BeatLibrary user={user} beats={beats} likes={likes} handleLikeClick={handleLikeClick}/>
+              <BeatLibrary user={user} beats={beats} likes={likes} handleLikeClick={handleLikeClick} handleAddToCart={handleAddToCart}/>
             </Route>
             <Route path='/login'>
               <LoginForm setUser={setUser}/>
@@ -146,7 +176,7 @@ function App() {
               <SignupForm setUser={setUser}/>
             </Route>
             <Route path={user ? `/${user.username}` : null}>
-              <UserRoutes user={user} genres={genres} beats={beats} setBeats={setBeats} handleBeatDelete={handleBeatDelete} handlePlayClick={handlePlayClick} handleLikeClick={handleLikeClick}/>
+              <UserRoutes user={user} genres={genres} beats={beats} setBeats={setBeats} likes={likes} carts={carts} handleBeatDelete={handleBeatDelete} handlePlayClick={handlePlayClick} handleLikeClick={handleLikeClick}/>
             </Route>
             <Route path='/'>
               <LandingPage user={user}/>

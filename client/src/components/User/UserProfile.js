@@ -18,16 +18,25 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 
-function UserProfile({ user, beats, setBeats, handlePlayClick, handleLikeClick }) {
+function UserProfile({ user, beats, likes, setBeats, handlePlayClick, handleLikeClick }) {
     const [ likeClicked, setLikeClicked ] = useState(false)
+    // const [ userBeats, setUserBeats ] = useState(beats)
     const history = useHistory()
+    // console.log('USER BEATS', userBeats)
     const userBeats = beats ? beats.filter(beat => beat.user_id === user.id) : null
   
 
     function toggleLike(user, beat){
+        setBeats((beats) => [...beats, 
+        {
+            ...beat, 
+            likes: [...beat.likes, ]
+        }])
         handleLikeClick(user, beat)
         setLikeClicked(!likeClicked)
     }
+
+    console.log(likes)
   
 
     return (
@@ -38,8 +47,9 @@ function UserProfile({ user, beats, setBeats, handlePlayClick, handleLikeClick }
                 <Button variant='contained' onClick={() => history.push(`/${user.username}/upload`)}>Upload Beats</Button>
                 <br></br>
                 <br></br>
-                {userBeats.map(beat => 
-                <>
+                {userBeats.map(beat => {
+                    let foundLike = likes.find(like => like.beat_id === beat.id)
+                return (<>
                 <br></br>
                 <Card key={beat.id} sx={{display: 'flex', bgcolor: '#000000', padding: '20px', border: '2px solid #222222', '&:hover': {border: '2px solid #333333'}}}>
                 <Grid container spacing={2}>
@@ -64,14 +74,14 @@ function UserProfile({ user, beats, setBeats, handlePlayClick, handleLikeClick }
                     <Grid item xs={12}sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                         <PlayArrowIcon fontSize='large' sx={{mr: '5px'}}/> &nbsp;{beat.plays}
                         <IconButton size='large' color='secondary' onClick={() => toggleLike(user, beat)}sx={{ml: '5px'}}>
-                            {likeClicked ? <FavoriteBorderIcon fontSize='medium'/> : <FavoriteIcon fontSize='medium'/>}
+                            {foundLike ? <FavoriteBorderIcon fontSize='medium'/> : <FavoriteIcon fontSize='medium'/>}
                         </IconButton>
                         <Typography variant='subtitle1'>{beat.likes.length}</Typography>
                     </Grid>
                 </Grid>
                 </Card>
-                </>
-                )}
+                </>)
+})}
             </>
             : 
             <h1>Loading...</h1>

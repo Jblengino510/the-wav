@@ -18,7 +18,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 
-function BeatLibrary({ user, beats, likes, handleLikeClick }) {
+function BeatLibrary({ user, beats, likes, handleLikeClick, handleAddToCart }) {
     const [ likeClicked, setLikeClicked ] = useState(false)
     const history = useHistory()
     const options = { year: 'numeric', month: 'long' };
@@ -57,7 +57,7 @@ function BeatLibrary({ user, beats, likes, handleLikeClick }) {
                             <br></br>
                             <Typography variant='body1'>{beat.genre.name}</Typography>
                             <br></br>
-                            <Button variant='contained' startIcon={<ShoppingCartOutlinedIcon color='secondary'/>}>
+                            <Button variant='contained' startIcon={<ShoppingCartOutlinedIcon color='secondary'/>} onClick={(e) => handleAddToCart(e, user, beat)}>
                                 <strong>${beat.price}.00</strong>
                             </Button>
                         </CardContent>
