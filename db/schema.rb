@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_04_180237) do
+ActiveRecord::Schema.define(version: 2021_10_05_181408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,15 @@ ActiveRecord::Schema.define(version: 2021_10_04_180237) do
     t.index ["user_id"], name: "index_beats_on_user_id"
   end
 
+  create_table "carts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "beat_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["beat_id"], name: "index_carts_on_beat_id"
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
   create_table "genres", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -88,6 +97,8 @@ ActiveRecord::Schema.define(version: 2021_10_04_180237) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "beats", "genres"
   add_foreign_key "beats", "users"
+  add_foreign_key "carts", "beats"
+  add_foreign_key "carts", "users"
   add_foreign_key "likes", "beats"
   add_foreign_key "likes", "users"
 end
