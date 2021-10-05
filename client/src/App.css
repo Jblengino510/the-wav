@@ -3,6 +3,10 @@
     box-sizing: border-box;
   }
 
+a:link {
+    text-decoration: none;
+  }
+
 html, body {
     margin: 0;
     padding: 0;
@@ -32,8 +36,10 @@ html, body {
   padding: 1rem;
   border: 2px dashed #001c55;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   font-size: 2rem;
   font-weight: bold;
   cursor: pointer;

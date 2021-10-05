@@ -31,10 +31,11 @@ function App() {
   const [ genres, setGenres ] = useState([])
   const [ likes, setLikes ] = useState([])
   const history = useHistory()
+  // console.log(user.id)
 
   useEffect(() => {
     fetch('/me')
-   .then(res => {
+    .then(res => {
      if (res.ok) {
        res.json().then(user => {
          setUser(user)
@@ -51,7 +52,7 @@ function App() {
         res.json().then(data => setBeats(data))
       }
     })
-  }, [likes])
+  }, [])
 
 
   useEffect(() => {
@@ -62,6 +63,16 @@ function App() {
       }
     })
   }, [])
+
+
+  // useEffect(() => {
+  //   fetch(`/users/${user.id}/likes`)
+  //   .then(res => {
+  //     if (res.ok) {
+  //       res.json().then(data => setLikes(data))
+  //     }
+  //   })
+  // }, [])
 
 
   function handleSignOut(){
@@ -109,9 +120,9 @@ function App() {
     })
     .then(res => {
       if (res.status === 200) {
-        res.json().then(data => setLikes(data))
+        res.json().then(data => setLikes([data, ...likes]))
       } else if (res.status === 204) {
-        res.json().then(data => setLikes(data))
+        res.json().then(data => setLikes(likes.filter(like => like.id !== data.id)))
       }
     })
   }
@@ -126,7 +137,7 @@ function App() {
           <NavBar user={user} handleSignOut={handleSignOut}/>
           <Switch>
             <Route path='/beats'>
-              <BeatLibrary beats={beats}/>
+              <BeatLibrary user={user} beats={beats} likes={likes} handleLikeClick={handleLikeClick}/>
             </Route>
             <Route path='/login'>
               <LoginForm setUser={setUser}/>

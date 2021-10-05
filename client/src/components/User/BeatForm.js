@@ -91,11 +91,13 @@ function BeatForm({ user, genres, beats, setBeats }) {
 
     
     return (
-        <Container sx={{bgcolor: '#1B1B1B'}}>
+        <Container sx={{bgcolor: ''}}>
             <h1>Upload a Beat</h1>
             <div {...getRootProps()} className={`dropzone ${isDragActive ? 'active' : null}`}>
                 <input {...getInputProps()}/>
-                Drag and drop your beats here
+                Drag and drop your beats here 
+                <br></br>
+                or click to choose files
                 {/* <Button variant='contained' color='primary'>or click to choose files</Button> */}
             </div>
             {audioUrl ?

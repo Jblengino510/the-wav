@@ -4,7 +4,7 @@ function LandingPage({ user }) {
     const [ youtubeVideos, setYoutubeVideos ] = useState([])
     const YOUTUBE_API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY
     // console.log(YOUTUBE_API_KEY)
-    console.log(youtubeVideos)
+    // console.log(youtubeVideos)
 
     // useEffect(() => {
     //     fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&q=fliko&maxResults=10&type=video&videoDefinition=high&key=${YOUTUBE_API_KEY}`)

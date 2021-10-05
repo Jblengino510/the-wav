@@ -60,7 +60,7 @@ function NavBar({ user, handleSignOut }) {
                 <AppBar position='sticky' sx={{bgcolor: '#000000', color: 'white', width: '100%', padding: '10px'}}>
                     <Toolbar>
                         <Typography variant='h4' sx={{flexGrow: 1}}>
-                            <strong>∿ The Wav ∿</strong>
+                            <Link to='/'><strong>∿ The Wav ∿</strong></Link>
                         </Typography>
                         <Box sx={{width: '25%'}}>
                             <Tabs value={value} onChange={handleChange} textColor='secondary' indicatorColor='primary'>
@@ -102,7 +102,7 @@ function NavBar({ user, handleSignOut }) {
                             right: 14,
                             width: 10,
                             height: 10,
-                            bgcolor: '#111111',
+                            bgcolor: '#222222',
                             transform: 'translateY(-50%) rotate(45deg)',
                             zIndex: 0,
                             },
@@ -113,7 +113,7 @@ function NavBar({ user, handleSignOut }) {
                         }}
                         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
-                            <MenuItem sx={{bgcolor: '#000000',  paddingRight: '50px', '&:hover': {backgroundColor: '#111111'}}} onClick={() => history.push(`/${user.username}`)} >
+                            <MenuItem sx={{bgcolor: '#000000',  paddingRight: '50px', '&:hover': {bgcolor: '#111111'}}} onClick={() => history.push(`/${user.username}`)} >
                                 <Avatar /> Profile
                             </MenuItem>
                             <Divider sx={{bgcolor: '#222222'}}/>
@@ -147,7 +147,7 @@ function NavBar({ user, handleSignOut }) {
                 <AppBar position='static' sx={{bgcolor: '#000000', color: 'white', width: '100%', padding: '10px'}}>
                     <Toolbar>
                         <Typography variant='h4' sx={{flexGrow: 1}}>
-                            <strong>∿ The Wav ∿</strong>
+                            <Link to='/'><strong>∿ The Wav ∿</strong></Link>
                         </Typography>
                         <Box sx={{width: '25%'}}>
                             <Tabs value={value} onChange={handleChange} textColor='secondary' indicatorColor='primary'>

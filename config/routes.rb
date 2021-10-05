@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   
-  resources :likes
+  resources :likes, only: [:create]
   resources :beats
   resources :genres
-  resources :users
+  resources :users do
+    resources :likes, only: [:index]
+  end
 
   post '/signup', to: 'users#create'
   get '/me', to: 'users#show'
