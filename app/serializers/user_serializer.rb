@@ -1,7 +1,11 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :password_digest, :avatar_url, :created_at, :total_beats, :total_plays, :unsold_beats, :total_beats_sold, :beats_sold_by_week
+  attributes :id, :username, :password_digest, :avatar_url, :created_at, :total_beats_uploaded, :total_plays, :unsold_beats, :total_beats_sold, :total_earnings, :beats_sold_by_week
 
   has_many :carts
+
+  def total_earnings
+    self.object.beats.where(is_sold: true).pluck(:price).sum
+  end
 
   def beats_sold_by_week
     self.object.beats.where(is_sold: true).group_by_week(:date_sold, last: 12).count
@@ -15,7 +19,7 @@ class UserSerializer < ActiveModel::Serializer
     self.object.carts.map{|item| item.beat.is_sold}.filter{|boolean| boolean == false}.count
   end
 
-  def total_beats
+  def total_beats_uploaded
     self.object.beats.length
   end
 

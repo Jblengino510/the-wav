@@ -121,7 +121,7 @@ function NavBar({ user, handleSignOut }) {
                                 <Avatar /> Profile
                             </MenuItem>
                             <Divider sx={{bgcolor: '#222222'}}/>
-                            <MenuItem sx={{bgcolor: '#000000',  paddingRight: '50px', '&:hover': {backgroundColor: '#111111'}}}>
+                            <MenuItem sx={{bgcolor: '#000000',  paddingRight: '50px', '&:hover': {backgroundColor: '#111111'}}} onClick={() => history.push(`/${user.username}/dashboard`)}>
                                 <ListItemIcon>
                                     <Insights fontSize="medium" color='secondary'/>
                                 </ListItemIcon>
