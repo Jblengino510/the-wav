@@ -40,7 +40,7 @@ function NavBar({ user, handleSignOut }) {
     const open = Boolean(anchorEl);
     const history = useHistory()
     const userCart = user.carts ? user.carts.filter(item => item.sold === false).length : null
-    console.log(userCart)
+   
 
     function handleClick(e){
         setAnchorEl(e.currentTarget)

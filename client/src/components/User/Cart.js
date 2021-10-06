@@ -20,9 +20,12 @@ function Cart({ carts, setCarts, handleDeleteFromCart }) {
    
 
     function handleBeatSold(beats){
+        const dateSold = new Date(Date.now()).toISOString()
+
         {beats.forEach(beat => {
             const beatObj = {
-                is_sold: true
+                is_sold: true,
+                date_sold: dateSold
             }
 
             fetch(`/beats/${beat.beat_id}`, {
