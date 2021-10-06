@@ -157,6 +157,14 @@ function App() {
   }
 
 
+  function handleDeleteFromCart(id){
+    fetch(`/carts/${id}`, {
+      method: 'DELETE' 
+    })
+    setCarts(carts.filter(item => item.id !== id))
+  }
+
+
 
   return (
     <>
@@ -176,7 +184,7 @@ function App() {
               <SignupForm setUser={setUser}/>
             </Route>
             <Route path={user ? `/${user.username}` : null}>
-              <UserRoutes user={user} genres={genres} beats={beats} setBeats={setBeats} likes={likes} carts={carts} handleBeatDelete={handleBeatDelete} handlePlayClick={handlePlayClick} handleLikeClick={handleLikeClick}/>
+              <UserRoutes user={user} genres={genres} beats={beats} setBeats={setBeats} likes={likes} carts={carts} handleBeatDelete={handleBeatDelete} handlePlayClick={handlePlayClick} handleLikeClick={handleLikeClick} handleDeleteFromCart={handleDeleteFromCart}/>
             </Route>
             <Route path='/'>
               <LandingPage user={user}/>

@@ -35,8 +35,6 @@ function UserProfile({ user, beats, likes, setBeats, handlePlayClick, handleLike
         handleLikeClick(user, beat)
         setLikeClicked(!likeClicked)
     }
-
-    console.log(likes)
   
 
     return (
@@ -73,8 +71,8 @@ function UserProfile({ user, beats, likes, setBeats, handlePlayClick, handleLike
                     </Grid>
                     <Grid item xs={12}sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                         <PlayArrowIcon fontSize='large' sx={{mr: '5px'}}/> &nbsp;{beat.plays}
-                        <IconButton size='large' color='secondary' onClick={() => toggleLike(user, beat)}sx={{ml: '5px'}}>
-                            {foundLike ? <FavoriteBorderIcon fontSize='medium'/> : <FavoriteIcon fontSize='medium'/>}
+                        <IconButton size='large' color='secondary' onClick={() => handleLikeClick(user, beat)}sx={{ml: '5px'}}>
+                            {foundLike ? <FavoriteIcon fontSize='medium'/> : <FavoriteBorderIcon fontSize='medium'/>}
                         </IconButton>
                         <Typography variant='subtitle1'>{beat.likes.length}</Typography>
                     </Grid>

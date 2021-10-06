@@ -4,11 +4,11 @@ import BeatForm from './BeatForm'
 import BeatDetails from './BeatDetails'
 import Cart from './Cart'
 
-function UserRoutes({ user, genres, beats, setBeats, likes, carts, handleBeatDelete, handlePlayClick, handleLikeClick }) {
+function UserRoutes({ user, genres, beats, setBeats, likes, carts, handleBeatDelete, handlePlayClick, handleLikeClick, handleDeleteFromCart }) {
     return (
         <Switch>
             <Route path={user ? `/${user.username}/cart` : null}>
-                <Cart carts={carts}/>
+                <Cart carts={carts} handleDeleteFromCart={handleDeleteFromCart}/>
             </Route>
             <Route path={user ? `/${user.username}/upload` : null}>
                 <BeatForm user={user} genres={genres} beats={beats} setBeats={setBeats}/>
