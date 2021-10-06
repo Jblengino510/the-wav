@@ -57,9 +57,14 @@ function BeatLibrary({ user, beats, likes, handleLikeClick, handleAddToCart }) {
                             <br></br>
                             <Typography variant='body1'>{beat.genre.name}</Typography>
                             <br></br>
+                            {beat.is_sold ? 
+                            <Button variant='contained'>
+                                <strong>sold</strong>
+                            </Button> 
+                            : 
                             <Button variant='contained' startIcon={<ShoppingCartOutlinedIcon color='secondary'/>} onClick={(e) => handleAddToCart(e, user, beat)}>
                                 <strong>${beat.price}.00</strong>
-                            </Button>
+                            </Button>}
                         </CardContent>
                         </Box>
                     </Grid>

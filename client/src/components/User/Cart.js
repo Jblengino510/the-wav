@@ -12,9 +12,30 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 
-function Cart({ carts, handleDeleteFromCart }) {
+function Cart({ carts, handleDeleteFromCart, setBeats }) {
+    const unsoldBeats = carts ? carts.filter(item => item.beat.is_sold === false) : null
+    console.log(unsoldBeats)
+
+    function handleBeatSold(e, beats){
+        e.preventDefault()
+        {beats.forEach(beat => {
+            console.log(beat.beat_id)
+            const beatObj = {
+                is_sold: true
+            }
+
+            fetch(`/beats/${beat.beat_id}`, {
+                method: 'PATCH',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(beatObj)
+            })
+        })}
+    }
+
+
     return (
         <Container>
             <Typography variant='h3'>Checkout</Typography>
@@ -31,12 +52,12 @@ function Cart({ carts, handleDeleteFromCart }) {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {carts.map(item => 
+                                {unsoldBeats.map(item => 
                                 <TableRow>
                                     <TableCell sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                                         <CardMedia component='image' image={item.beat.image_url ? item.beat.image_url : '/logo512.png'} sx={{width: '150px', height: '150px', mt: '20px', mb: '20px', mr: '40px'}}/>
                                         <div>
-                                        <Typography variant='h5'><strong>{item.user.username}</strong></Typography>
+                                        <Typography variant='h5'><strong>{item.beat_creator}</strong></Typography>
                                         <br></br>
                                         <Typography variant='body1'><strong>{item.beat.name}</strong></Typography>
                                         </div>
@@ -56,8 +77,11 @@ function Cart({ carts, handleDeleteFromCart }) {
                         </TableContainer>
                     </Box>
                 </Grid>
-                <Grid item xs={12} sx={{mt: '20px'}}>
-                    <Typography variant='h5'>Total: ${carts ? carts.map(item => item.beat.price).reduce((a, b) => a + b, 0) : null}.00 USD</Typography>
+                <Grid item xs={6} sx={{mt: '20px'}}>
+                    <Typography variant='h5'>Total: ${unsoldBeats ? unsoldBeats.map(item => item.beat.price).reduce((a, b) => a + b, 0) : null}.00 USD</Typography>
+                </Grid>
+                <Grid item xs={6} sx={{mt: '20px'}}>
+                    <Button variant='contained' color='primary' sx={{float: 'right'}} onClick={(e) => handleBeatSold(e, unsoldBeats)}>Checkout</Button>
                 </Grid>
             </Grid>
         </Container>

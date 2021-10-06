@@ -4,6 +4,11 @@ class CartsController < ApplicationController
         render json: Cart.all
     end
 
+    def show
+        cart = find_cart
+        render json: cart
+    end
+
     def create
         cart = Cart.create!(cart_params)
         render json: cart, status: :created
