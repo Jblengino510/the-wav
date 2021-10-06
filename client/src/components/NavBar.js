@@ -18,6 +18,8 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Divider from '@mui/material/Divider';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import Badge from '@mui/material/Badge';
+import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 
 function LinkTab(props) {
     return (
@@ -37,6 +39,8 @@ function NavBar({ user, handleSignOut }) {
     const [ anchorEl, setAnchorEl ] = useState(null)
     const open = Boolean(anchorEl);
     const history = useHistory()
+    const userCart = user.carts ? user.carts.filter(item => item.sold === false).length : null
+    console.log(userCart)
 
     function handleClick(e){
         setAnchorEl(e.currentTarget)
@@ -66,7 +70,7 @@ function NavBar({ user, handleSignOut }) {
                             <Tabs value={value} onChange={handleChange} textColor='secondary' indicatorColor='primary'>
                                 <LinkTab label={<strong>Home</strong>} onClick={() => history.push('/')} sx={{color: 'white'}}/>
                                 <LinkTab label={<strong>Beats</strong>} onClick={() => history.push('/beats')} sx={{color: 'white'}}/>
-                                <LinkTab icon={<ShoppingCartOutlinedIcon color='secondary' onClick={() => history.push(`/${user.username}/cart`)} sx={{width: 28, height: 28}}/>} />
+                                <LinkTab icon={userCart ? <Badge badgeContent={userCart} color='error'><ShoppingCartOutlinedIcon color='secondary' onClick={() => history.push(`/${user.username}/cart`)} sx={{width: 28, height: 28}}/></Badge> : <ShoppingCartOutlinedIcon color='secondary' onClick={() => history.push(`/${user.username}/cart`)} sx={{width: 28, height: 28}}/>} /> 
                             </Tabs>
                         </Box>
                         <IconButton

@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
 
     def index
-        render json: Cart.all
+        render json: Cart.all.filter{|item| item.beat.is_sold == false}
     end
 
     def show
@@ -29,4 +29,5 @@ class CartsController < ApplicationController
     def cart_params
         params.permit(:user_id, :beat_id)
     end
+    
 end

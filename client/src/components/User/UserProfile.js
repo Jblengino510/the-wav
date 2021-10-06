@@ -63,9 +63,13 @@ function UserProfile({ user, beats, likes, setBeats, handlePlayClick, handleLike
                                 <br></br>
                                 <Typography variant='body1'>{beat.genre.name}</Typography>
                                 <br></br>
-                                <Button variant='contained' startIcon={<ShoppingCartOutlinedIcon color='secondary'/>}>
+                                {beat.is_sold ? <Button variant='contained'>
+                                <strong>sold</strong>
+                            </Button> 
+                            : 
+                            <Button variant='contained' startIcon={<ShoppingCartOutlinedIcon color='secondary'/>}>
                                     <strong>${beat.price}.00</strong>
-                                </Button>
+                                </Button>}
                             </CardContent>
                         </Box>
                     </Grid>

@@ -15,14 +15,12 @@ import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 
-function Cart({ carts, handleDeleteFromCart, setBeats }) {
+function Cart({ carts, setCarts, handleDeleteFromCart }) {
     const unsoldBeats = carts ? carts.filter(item => item.beat.is_sold === false) : null
-    console.log(unsoldBeats)
+   
 
-    function handleBeatSold(e, beats){
-        e.preventDefault()
+    function handleBeatSold(beats){
         {beats.forEach(beat => {
-            console.log(beat.beat_id)
             const beatObj = {
                 is_sold: true
             }
@@ -32,6 +30,8 @@ function Cart({ carts, handleDeleteFromCart, setBeats }) {
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(beatObj)
             })
+            //deletes cart instance
+            .then(handleDeleteFromCart(beat.id))
         })}
     }
 
@@ -81,7 +81,7 @@ function Cart({ carts, handleDeleteFromCart, setBeats }) {
                     <Typography variant='h5'>Total: ${unsoldBeats ? unsoldBeats.map(item => item.beat.price).reduce((a, b) => a + b, 0) : null}.00 USD</Typography>
                 </Grid>
                 <Grid item xs={6} sx={{mt: '20px'}}>
-                    <Button variant='contained' color='primary' sx={{float: 'right'}} onClick={(e) => handleBeatSold(e, unsoldBeats)}>Checkout</Button>
+                    <Button variant='contained' color='primary' sx={{float: 'right'}} onClick={() => handleBeatSold(unsoldBeats)}>Checkout</Button>
                 </Grid>
             </Grid>
         </Container>

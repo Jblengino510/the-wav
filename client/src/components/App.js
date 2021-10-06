@@ -32,7 +32,6 @@ function App() {
   const [ likes, setLikes ] = useState([])
   const [ carts, setCarts ] = useState([])
   const history = useHistory()
-  // console.log(user.id)
   // console.log(carts)
 
   useEffect(() => {
@@ -141,8 +140,7 @@ function App() {
   }
 
 
-  function handleAddToCart(e, user, beat){
-    e.preventDefault()
+  function handleAddToCart(user, beat){
     const cartObj = {
       user_id: user.id,
       beat_id: beat.id
@@ -184,7 +182,7 @@ function App() {
               <SignupForm setUser={setUser}/>
             </Route>
             <Route path={user ? `/${user.username}` : null}>
-              <UserRoutes user={user} genres={genres} beats={beats} setBeats={setBeats} likes={likes} carts={carts} handleBeatDelete={handleBeatDelete} handlePlayClick={handlePlayClick} handleLikeClick={handleLikeClick} handleDeleteFromCart={handleDeleteFromCart}/>
+              <UserRoutes user={user} genres={genres} beats={beats} setBeats={setBeats} likes={likes} carts={carts} setCarts={setCarts} handleBeatDelete={handleBeatDelete} handlePlayClick={handlePlayClick} handleLikeClick={handleLikeClick} handleDeleteFromCart={handleDeleteFromCart}/>
             </Route>
             <Route path='/'>
               <LandingPage user={user}/>
