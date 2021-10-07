@@ -20,22 +20,37 @@ function SellerDashboard({ user }) {
             <Typography variant='h4'>Dashboard</Typography>
             <Divider sx={{bgcolor: '#222222', mt: '20px', mb: '20px'}}/>
             <Grid container>
-                <Grid item xs={4}>
-                <Card sx={{display: 'flex', bgcolor: '#00072d', padding: '20px'}}>
-                <AttachMoneyIcon color='secondary' fontSize='large'/>
-                </Card>
+                <Grid item xs={4} sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                    <Card sx={{display: 'flex', flexDirection: 'row', alignItems: 'center', bgcolor: '#00072d', padding: '20px', width: '250px'}}>
+                        <AttachMoneyIcon color='secondary' fontSize='large' sx={{mr: '40px'}}/>
+                        <div>
+                        <Typography variant='h6'><strong>${user.total_earnings}.00</strong></Typography>
+                        <Typography variant='subtitle2'><strong>TOTAL EARNINGS</strong></Typography>
+                        </div>
+                    </Card>
                 </Grid>
-                <Grid item xs={4}>
-                <Card sx={{display: 'flex', bgcolor: '#00072d', padding: '20px'}}>
-                <ShoppingCartIcon color='secondary' fontSize='large'/>
-                </Card>
+                <Grid item xs={4} sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                    <Card sx={{display: 'flex', flexDirection: 'row', alignItems: 'center', bgcolor: '#00072d', padding: '20px', width: '250px'}}>
+                        <ShoppingCartIcon color='secondary' fontSize='large' sx={{mr: '40px'}}/>
+                        <div>
+                        <Typography variant='h6'><strong>{user.total_beats_sold}</strong></Typography>
+                        <Typography variant='subtitle2'><strong>TOTAL BEATS SOLD</strong></Typography>
+                        </div>
+                    </Card>
                 </Grid>
-                <Grid item xs={4}>
-                <Card sx={{display: 'flex', bgcolor: '#00072d', padding: '20px'}}>
-                <PlayArrowIcon color='secondary' fontSize='large'/>
-                </Card>
+                <Grid item xs={4} sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                    <Card sx={{display: 'flex', flexDirection: 'row', alignItems: 'center', bgcolor: '#00072d', padding: '20px', width: '250px'}}>
+                        <PlayArrowIcon color='secondary' fontSize='large' sx={{mr: '40px'}}/>
+                        <div>
+                        <Typography variant='h6'><strong>{user.total_plays}</strong></Typography>
+                        <Typography variant='subtitle2'><strong>TOTAL PLAYS</strong></Typography>
+                        </div>
+                    </Card>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12}  sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', mt: '20px', paddingTop: '30px'}}>
+                    <Typography variant='h5'><strong>Sales for Last 3 Months</strong></Typography>
+                </Grid>
+                <Grid item xs={12} sx={{mt: '20px', paddingTop: '30px'}}>
                     <AreaChart height="150px"  colors={['#001c55']}
                     options={{
                         legend: {

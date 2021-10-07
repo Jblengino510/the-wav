@@ -26,13 +26,14 @@ const theme = createTheme({
 
 
 function App() {
-  const [ user, setUser ] = useState({})
+  const [ user, setUser ] = useState(null)
   const [ beats, setBeats ] = useState([])
   const [ genres, setGenres ] = useState([])
   const [ likes, setLikes ] = useState([])
   const [ carts, setCarts ] = useState([])
   const history = useHistory()
   // console.log(carts)
+  
 
   useEffect(() => {
     fetch('/me')
@@ -67,12 +68,14 @@ function App() {
 
 
   useEffect(() => {
+    if (user) {
     fetch(`/users/${user.id}/likes`)
     .then(res => {
       if (res.ok) {
         res.json().then(data => setLikes(data))
       }
     })
+  }
   }, [user])
 
 
@@ -92,7 +95,7 @@ function App() {
     })
     .then(res => {
       if (res.ok) {
-        setUser()
+        setUser(null)
         history.push('/')
       }
     })

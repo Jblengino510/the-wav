@@ -39,8 +39,9 @@ function NavBar({ user, handleSignOut }) {
     const [ anchorEl, setAnchorEl ] = useState(null)
     const open = Boolean(anchorEl);
     const history = useHistory()
-    const userCart = user.carts ? user.carts.filter(item => item.sold === false).length : null
-   
+    const userCart = user ? user.carts.filter(item => item.sold === false).length : null
+    
+
 
     function handleClick(e){
         setAnchorEl(e.currentTarget)
@@ -153,10 +154,10 @@ function NavBar({ user, handleSignOut }) {
                         <Typography variant='h4' sx={{flexGrow: 1}}>
                             <Link to='/'><strong>∿ The Wav ∿</strong></Link>
                         </Typography>
-                        <Box sx={{width: '25%'}}>
+                        <Box sx={{width: '35%'}}>
                             <Tabs value={value} onChange={handleChange} textColor='secondary' indicatorColor='primary'>
-                                <LinkTab label="Home" onClick={() => history.push('/')} sx={{color: 'white'}}/>
-                                <LinkTab label="Beats" onClick={() => history.push('/beats')} sx={{color: 'white'}}/>
+                                <LinkTab label={<strong>Home</strong>} onClick={() => history.push('/')} sx={{color: 'white'}}/>
+                                <LinkTab label={<strong>Beats</strong>} onClick={() => history.push('/beats')} sx={{color: 'white'}}/>
                                 <LinkTab label={<strong>Sign Up</strong>} onClick={() => history.push('/signup')} sx={{color: 'white'}}/>
                                 <LinkTab label={<strong>Log In</strong>} onClick={() => history.push('/login')} sx={{color: 'white'}}/>
                             </Tabs>

@@ -27,11 +27,11 @@ function UserProfile({ user, beats, likes, setBeats, handlePlayClick, handleLike
   
 
     function toggleLike(user, beat){
-        setBeats((beats) => [...beats, 
-        {
-            ...beat, 
-            likes: [...beat.likes, ]
-        }])
+        // setBeats((beats) => [...beats, 
+        // {
+        //     ...beat, 
+        //     likes: [...beat.likes, ]
+        // }])
         handleLikeClick(user, beat)
         setLikeClicked(!likeClicked)
     }
