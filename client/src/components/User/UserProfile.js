@@ -38,7 +38,7 @@ function UserProfile({ user, beats, likes, setBeats, handlePlayClick, handleLike
   
 
     return (
-        <Container>
+        <Container sx={{mt: '100px'}}>
             {user ?
             <> 
                 <Typography variant='h4' sx={{mt: '20px', mb: '20px', paddingTop: '20px'}}>Welcome {user.username}</Typography> 

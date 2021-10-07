@@ -93,7 +93,7 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
 
 
     return (
-        <Container>
+        <Container sx={{mt: '100px'}}>
             {beat.genre ?
             <>
                 <br></br>
@@ -165,13 +165,13 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
                             <CloseIcon sx={{color: '#222222', ml: '380px', mt: '10px'}}/>
                         </IconButton>
                         <form onSubmit={handleEditBeat} autoComplete='off' style={{padding: '50px'}}>
-                            <TextField label="Name" variant="outlined" color='primary' onChange={(e) => setName(e.target.value)} sx={{bgcolor: '#111111', color: '#777777', width: '100%', mb: '20px'}}/>
-                            <TextField select label="Genre" variant="outlined" color='primary' onChange={(e) => setGenre(e.target.value)} sx={{bgcolor: '#111111', color: '#777777', width: '100%', mt: '20px', mb: '20px'}}>
-                                <MenuItem value="" sx={{bgcolor: '#111111', color: '#777777', '&:hover': {bgcolor: '#1B1B1B'}}}>--</MenuItem>
-                                {genreArr.map(genre => <MenuItem value={genre.id} sx={{bgcolor: '#111111', color: '#777777', '&:hover': {bgcolor: '#1B1B1B'}}}>{genre.name}</MenuItem>)}
+                            <TextField label="Name" variant="outlined" color='primary' onChange={(e) => setName(e.target.value)} sx={{bgcolor: '#222222', color: '#777777', width: '100%', mb: '20px'}}/>
+                            <TextField select label="Genre" variant="outlined" color='primary' onChange={(e) => setGenre(e.target.value)} sx={{bgcolor: '#222222', color: '#777777', width: '100%', mt: '20px', mb: '20px'}}>
+                                <MenuItem value="" sx={{bgcolor: '#222222', color: '#777777', '&:hover': {bgcolor: '#1B1B1B'}}}>--</MenuItem>
+                                {genreArr.map(genre => <MenuItem value={genre.id} sx={{bgcolor: '#222222', color: '#777777', '&:hover': {bgcolor: '#1B1B1B'}}}>{genre.name}</MenuItem>)}
                             </TextField>
-                            <TextField label="Tempo" variant="outlined" color='primary' onChange={(e) => setTempo(e.target.value)} sx={{bgcolor: '#111111', color: '#777777', width: '100%', mt: '20px', mb: '20px'}}/>
-                            <TextField label="Price" variant="outlined" color='primary' onChange={(e) => setPrice(e.target.value)} sx={{bgcolor: '#111111', color: '#777777', width: '100%', mt: '20px', mb: '20px'}}/>
+                            <TextField label="Tempo" variant="outlined" color='primary' onChange={(e) => setTempo(e.target.value)} sx={{bgcolor: '#222222', color: '#777777', width: '100%', mt: '20px', mb: '20px'}}/>
+                            <TextField label="Price" variant="outlined" color='primary' onChange={(e) => setPrice(e.target.value)} sx={{bgcolor: '#222222', color: '#777777', width: '100%', mt: '20px', mb: '20px'}}/>
                             <Button type='submit' variant='contained' sx={{mt: '20px', width: '100%', padding: '15px'}}><strong>Submit</strong></Button> 
                         </form>
                         {(errors.length > 0) ?

@@ -17,7 +17,7 @@ function SellerDashboard({ user }) {
     
 
     return (
-        <Container>
+        <Container sx={{mt: '100px'}}>
             <Typography variant='h4'>Dashboard</Typography>
             <Divider sx={{bgcolor: '#222222', mt: '20px', mb: '20px'}}/>
             <Grid container>

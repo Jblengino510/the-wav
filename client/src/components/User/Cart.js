@@ -40,8 +40,8 @@ function Cart({ carts, setCarts, handleDeleteFromCart }) {
 
 
     return (
-        <Container>
-            <Typography variant='h3'>Checkout</Typography>
+        <Container sx={{mt: '100px'}}>
+            <Typography variant='h3' sx={{mt: '20px', mb: '20px', paddingTop: '20px'}}>Checkout</Typography>
             <Divider sx={{bgcolor: '#222222', mt: '20px', mb: '20px'}}/>
             <Grid container>
                 <Grid item xs={12}>

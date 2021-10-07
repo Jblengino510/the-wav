@@ -9,6 +9,7 @@ import UserRoutes from './User/UserRoutes';
 import BeatLibrary from './BeatLibrary';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Container from '@mui/material/Container';
+import { ParallaxProvider } from 'react-scroll-parallax';
 
 const theme = createTheme({
   palette: {
@@ -172,7 +173,7 @@ function App() {
       {user ? 
       <>
         <ThemeProvider theme={theme}>
-        <Container sx={{color: 'white', bgcolor: ''}}>
+        <div style={{color: 'white', bgcolor: ''}}>
           <NavBar user={user} handleSignOut={handleSignOut}/>
           <Switch>
             <Route path='/beats'>
@@ -191,13 +192,13 @@ function App() {
               <LandingPage user={user}/>
             </Route>
           </Switch>
-        </Container>  
+        </div>  
         </ThemeProvider>
       </> 
       :
       <>
         <ThemeProvider theme={theme}>
-        <Container sx={{bgcolor: '', color: 'white'}}>
+        <div style={{bgcolor: '', color: 'white'}}>
           <NavBar user={user} handleSignOut={handleSignOut}/>
           <Switch>
             <Route path='/login'>
@@ -213,7 +214,7 @@ function App() {
               <LandingPage user={user}/>
             </Route>
           </Switch>  
-        </Container>  
+        </div>  
         </ThemeProvider>
       </>
       }

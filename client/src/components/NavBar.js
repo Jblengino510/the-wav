@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useHistory, Link } from 'react-router-dom'
+import Container from '@mui/material/Container';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -61,10 +62,10 @@ function NavBar({ user, handleSignOut }) {
     
     
     return (
-        <div>
+        <Container>
             { user ? 
             <>
-                <AppBar position='sticky' sx={{bgcolor: '#000000', color: 'white', width: '100%', padding: '10px'}}>
+                <AppBar position='fixed' sx={{bgcolor: '#000000', color: 'white', width: '100%', padding: '10px'}}>
                     <Toolbar>
                         <Button component={Link} to='/' color='secondary'>
                             <Typography variant='h4'>
@@ -74,7 +75,7 @@ function NavBar({ user, handleSignOut }) {
                         <Box sx={{flexGrow: 1}}></Box>
                         {/* <img src='/waveform.png' alt='wav logo' width='100px' height='100px'/>
                         <CardMedia component='image' image={'/waveform.png'} sx={{width: '150px', height: '150px', mt: '20px', padding: '10px'}}/> */}
-                        <Box sx={{width: '25%'}}>
+                        <Box sx={{}}>
                             <Tabs value={value} onChange={handleChange} textColor='secondary' indicatorColor='primary'>
                                 <LinkTab label={<strong>Home</strong>} onClick={() => history.push('/')} sx={{color: 'white'}}/>
                                 <LinkTab label={<strong>Beats</strong>} onClick={() => history.push('/beats')} sx={{color: 'white'}}/>
@@ -159,7 +160,7 @@ function NavBar({ user, handleSignOut }) {
             : 
             (
             <>
-                <AppBar position='static' sx={{bgcolor: '#000000', color: 'white', width: '100%', padding: '10px'}}>
+                <AppBar position='fixed' sx={{bgcolor: '#000000', color: 'white', width: '100%', padding: '10px'}}>
                     <Toolbar>
                         <Button component={Link} to='/' color='secondary'>
                             <Typography variant='h4'>
@@ -168,7 +169,7 @@ function NavBar({ user, handleSignOut }) {
                         </Button>
                         <Box sx={{flexGrow: 1}}></Box>
                         {/* <img src='/waveform.png' alt='wav logo' width='50px' height='50px'/> */}
-                        <Box sx={{width: '35%'}}>
+                        <Box sx={{}}>
                             <Tabs value={value} onChange={handleChange} textColor='secondary' indicatorColor='primary'>
                                 <LinkTab label={<strong>Home</strong>} onClick={() => history.push('/')} sx={{color: 'white'}}/>
                                 <LinkTab label={<strong>Beats</strong>} onClick={() => history.push('/beats')} sx={{color: 'white'}}/>
@@ -181,7 +182,7 @@ function NavBar({ user, handleSignOut }) {
             </>
             )
             }
-        </div>
+        </Container>
     )
 }
 
