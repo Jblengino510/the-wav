@@ -10,6 +10,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
+
 function SellerDashboard({ user }) {
     const [ totalBeatsSold, setTotalBeatsSold ] = useState(user.total_beats_sold)
 

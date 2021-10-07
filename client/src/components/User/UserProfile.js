@@ -58,7 +58,7 @@ function UserProfile({ user, beats, likes, setBeats, handlePlayClick, handleLike
                         <Box sx={{ display: 'flex', flexDirection: 'column'}}>
                             <CardContent>
                                 <Link to={`/${beat.user.username}/${beat.id}`}>
-                                <Typography variant='h5' color='secondary'><strong>{beat.name}</strong></Typography>
+                                <Typography variant='h5' color='secondary' sx={{'&:hover': {textDecoration: 'underline'}}}><strong>{beat.name}</strong></Typography>
                                 </Link>
                                 <br></br>
                                 <Typography variant='body1'>{beat.genre.name}</Typography>

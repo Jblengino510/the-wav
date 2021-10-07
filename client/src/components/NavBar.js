@@ -20,6 +20,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Badge from '@mui/material/Badge';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
+import CardMedia from '@mui/material/CardMedia';
 
 function LinkTab(props) {
     return (
@@ -64,9 +65,14 @@ function NavBar({ user, handleSignOut }) {
             <>
                 <AppBar position='sticky' sx={{bgcolor: '#000000', color: 'white', width: '100%', padding: '10px'}}>
                     <Toolbar>
-                        <Typography variant='h4' sx={{flexGrow: 1}}>
-                            <Link to='/'><strong>∿ The Wav ∿</strong></Link>
-                        </Typography>
+                        <Button component={Link} to='/' color='secondary'>
+                            <Typography variant='h4'>
+                                <strong>∿ The Wav ∿</strong>
+                            </Typography>
+                        </Button>
+                        <Box sx={{flexGrow: 1}}></Box>
+                        {/* <img src='/waveform.png' alt='wav logo' width='100px' height='100px'/>
+                        <CardMedia component='image' image={'/waveform.png'} sx={{width: '150px', height: '150px', mt: '20px', padding: '10px'}}/> */}
                         <Box sx={{width: '25%'}}>
                             <Tabs value={value} onChange={handleChange} textColor='secondary' indicatorColor='primary'>
                                 <LinkTab label={<strong>Home</strong>} onClick={() => history.push('/')} sx={{color: 'white'}}/>
@@ -151,9 +157,13 @@ function NavBar({ user, handleSignOut }) {
             <>
                 <AppBar position='static' sx={{bgcolor: '#000000', color: 'white', width: '100%', padding: '10px'}}>
                     <Toolbar>
-                        <Typography variant='h4' sx={{flexGrow: 1}}>
-                            <Link to='/'><strong>∿ The Wav ∿</strong></Link>
-                        </Typography>
+                        <Button component={Link} to='/' color='secondary'>
+                            <Typography variant='h4'>
+                                <strong>∿ The Wav ∿</strong>
+                            </Typography>
+                        </Button>
+                        <Box sx={{flexGrow: 1}}></Box>
+                        {/* <img src='/waveform.png' alt='wav logo' width='50px' height='50px'/> */}
                         <Box sx={{width: '35%'}}>
                             <Tabs value={value} onChange={handleChange} textColor='secondary' indicatorColor='primary'>
                                 <LinkTab label={<strong>Home</strong>} onClick={() => history.push('/')} sx={{color: 'white'}}/>

@@ -23,6 +23,7 @@ import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 
 
+
 function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, handleLikeClick }) {
     const [ beat, setBeat ] = useState({})
     const [ open, setOpen ] = useState(false)
@@ -157,7 +158,7 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
                 </Card>
                 <br></br>
                 <br></br>
-                <Button size='large'  variant='contained' onClick={() => setOpen(true)}>Edit</Button>
+                <Button size='large'  variant='contained' onClick={() => setOpen(true)} sx={{mr: '20px'}}>Edit</Button>
                 <Button size='large' variant='contained' onClick={() => handleBeatDelete(beat.id)}>Delete</Button>
                 <Modal 
                 open={open} 
