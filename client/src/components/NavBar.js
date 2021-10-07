@@ -19,6 +19,7 @@ import Divider from '@mui/material/Divider';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Badge from '@mui/material/Badge';
+import AddIcon from '@mui/icons-material/Add';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import CardMedia from '@mui/material/CardMedia';
 
@@ -80,6 +81,9 @@ function NavBar({ user, handleSignOut }) {
                                 <LinkTab icon={userCart ? <Badge badgeContent={userCart} color='error'><ShoppingCartOutlinedIcon color='secondary' onClick={() => history.push(`/${user.username}/cart`)} sx={{width: 28, height: 28}}/></Badge> : <ShoppingCartOutlinedIcon color='secondary' onClick={() => history.push(`/${user.username}/cart`)} sx={{width: 28, height: 28}}/>} /> 
                             </Tabs>
                         </Box>
+                        <Button onClick={() => history.push(`/${user.username}/upload`)} variant='contained' color='primary' startIcon={<AddIcon fontSize='medium'/>} sx={{mr: '15px', ml: '10px'}}>
+                        <strong>Upload</strong>
+                        </Button>
                         <IconButton
                         size='large'
                         // edge='end'

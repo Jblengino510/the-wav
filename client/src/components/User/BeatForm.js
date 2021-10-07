@@ -9,7 +9,11 @@ import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-
+import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
 
 
 function BeatForm({ user, genres, beats, setBeats }) {
@@ -91,8 +95,8 @@ function BeatForm({ user, genres, beats, setBeats }) {
 
     
     return (
-        <Container sx={{bgcolor: ''}}>
-            <h1>Upload a Beat</h1>
+        <Container>
+            <Typography variant='h4' sx={{mt: '20px', mb: '20px', paddingTop: '20px'}}><strong>Upload A Beat</strong></Typography>
             <div {...getRootProps()} className={`dropzone ${isDragActive ? 'active' : null}`}>
                 <input {...getInputProps()}/>
                 Drag and drop your beats here 
@@ -101,7 +105,7 @@ function BeatForm({ user, genres, beats, setBeats }) {
                 {/* <Button variant='contained' color='primary'>or click to choose files</Button> */}
             </div>
             {audioUrl ?
-            <Grid container spacing={2} sx={{bgcolor: 'white', mt: '20px'}}>
+            <Grid container spacing={2} sx={{border: '2px dashed #001c55', mt: '20px', mb: '20px', padding: '20px'}}>
                 <Grid item xs={6} sx={imageUrl ? {backgroundImage: `url(${imageUrl})`, backgroundSize: 'cover', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'} : {bgcolor: '#000000', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                     <h1>add cover art</h1>
                     <form onSubmit={handleImageUpload}>
@@ -111,34 +115,28 @@ function BeatForm({ user, genres, beats, setBeats }) {
                         {image ? <Button type='submit' variant='contained' sx={{alignItems: 'center'}}>Upload image</Button> : null}
                     </form>
                 </Grid>
-                <Grid item xs={6} sx={{bgcolor: 'red'}}>
-                <form onSubmit={handleBeatSubmit} autoComplete='off'>
-                    <h3>name</h3>
-                    <input type='text' value={name} onChange={(e) => setName(e.target.value)}/>
-                    <h3>genre</h3>
-                    <select onChange={(e) => setGenre(e.target.value)}>
-                        <option value="">--</option>
-                        {genreArr.map(genre => <option value={genre.id}>{genre.name}</option>)}
-                    </select>
-                    <h3>tempo</h3>
-                    <input type='text' value={tempo} onChange={(e) => setTempo(e.target.value)}/>
-                    <h3>price</h3>
-                    <input type='text' value={price} onChange={(e) => setPrice(e.target.value)}/>
-                    <br></br>
-                    <br></br>
-                    <Button type='submit' variant='contained'>Submit</Button>
+                <Grid item xs={6} sx={{bgcolor: '#000000'}}>
+                <form onSubmit={handleBeatSubmit} autoComplete='off' style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                    <TextField label="Name" variant="outlined" color='primary' onChange={(e) => setName(e.target.value)} sx={{bgcolor: '#111111', color: '#777777', width: '50%', mt: '20px', mb: '20px'}}/>
+                    <TextField select label="Genre" variant="outlined" color='primary' onChange={(e) => setGenre(e.target.value)} sx={{bgcolor: '#111111', color: '#777777', width: '50%', mt: '20px', mb: '20px'}}>
+                        <MenuItem value="" sx={{bgcolor: '#111111', color: '#777777', '&:hover': {bgcolor: '#1B1B1B'}}}>--</MenuItem>
+                        {genreArr.map(genre => <MenuItem value={genre.id} sx={{bgcolor: '#111111', color: '#777777', '&:hover': {bgcolor: '#1B1B1B'}}}>{genre.name}</MenuItem>)}
+                    </TextField>
+                    <TextField label="Tempo" variant="outlined" color='primary' onChange={(e) => setTempo(e.target.value)} sx={{bgcolor: '#111111', color: '#777777', width: '50%', mt: '20px', mb: '20px'}}/>
+                    <TextField label="Price" variant="outlined" color='primary' onChange={(e) => setPrice(e.target.value)} sx={{bgcolor: '#111111', color: '#777777', width: '50%', mt: '20px', mb: '20px'}}/>
+                    <Button type='submit' variant='contained' sx={{mt: '20px', mb: '40px'}}><strong>Submit</strong></Button>
                 </form> 
+                {(errors.length > 0) ?
+                (<Box sx={{mt: '20px', mb: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                {errors.map(error => <Typography key={error} color='error'>{error}</Typography>)}
+                </Box>) 
+                :
+                null
+                }
                 </Grid>
             </Grid> 
             :
             null
-            }
-            {(errors.length > 0) ?
-                (<div>
-                {errors.map(error => <li key={error}>{error}</li>)}
-                </div>) 
-                :
-                null
             }
         </Container>
     )

@@ -20,6 +20,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
+import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 
 
@@ -94,14 +96,6 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
         <Container>
             {beat.genre ?
             <>
-                {/* <h2>{beat.name}</h2>
-                <em>{beat.genre.name}</em>
-                <h4>{beat.tempo} bpm</h4>
-                <h4>${beat.price}.00</h4>
-                <div onClick={() => handlePlayClick(beat)}>
-                <AudioPlayer src={beat.audio_url} controls/>
-                </div>
-                <p onClick={() => toggleLike(user, beat)}>▶️&nbsp; {beat.plays ? beat.plays : 0} &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; ❤️ &nbsp;{likeClicked ? beat.likes.length + 1 : beat.likes.length }</p> */}
                 <br></br>
                 <Card key={beat.id} sx={{display: 'flex', bgcolor: '#000000', padding: '20px', border: '2px solid #222222', '&:hover': {border: '2px solid #333333'}}}>
                 <Grid container spacing={2}>
@@ -168,38 +162,23 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
                 >
                     <Box className='modalForm'>
                         <IconButton onClick={handleClose}>
-                            <CloseIcon sx={{color: '#222222', ml: '350px', mt: '5px'}}/>
+                            <CloseIcon sx={{color: '#222222', ml: '380px', mt: '10px'}}/>
                         </IconButton>
-                        <form onSubmit={handleEditBeat} autoComplete='off'>
-                            <h3>name</h3>
-                            <input type='text' value={name} onChange={(e) => setName(e.target.value)}/>
-                            <h3>genre</h3>
-                            <select onChange={(e) => setGenre(e.target.value)}>
-                                <option value="">--</option>
-                                {genreArr.map(genre => <option value={genre.id}>{genre.name}</option>)}
-                            </select>
-                            <h3>tempo</h3>
-                            <input type='text' value={tempo} onChange={(e) => setTempo(e.target.value)}/>
-                            <h3>price</h3>
-                            <input type='text' value={price} onChange={(e) => setPrice(e.target.value)}/>
-                            <br></br>
-                            <br></br>
-                            <Button 
-                            type='submit' 
-                            color='primary' 
-                            variant='contained' 
-                            // endIcon={<SaveAltIcon />}
-                            >
-                                Save Changes
-                            </Button>
-                            <br></br>
-                            <br></br>
+                        <form onSubmit={handleEditBeat} autoComplete='off' style={{padding: '50px'}}>
+                            <TextField label="Name" variant="outlined" color='primary' onChange={(e) => setName(e.target.value)} sx={{bgcolor: '#111111', color: '#777777', width: '100%', mb: '20px'}}/>
+                            <TextField select label="Genre" variant="outlined" color='primary' onChange={(e) => setGenre(e.target.value)} sx={{bgcolor: '#111111', color: '#777777', width: '100%', mt: '20px', mb: '20px'}}>
+                                <MenuItem value="" sx={{bgcolor: '#111111', color: '#777777', '&:hover': {bgcolor: '#1B1B1B'}}}>--</MenuItem>
+                                {genreArr.map(genre => <MenuItem value={genre.id} sx={{bgcolor: '#111111', color: '#777777', '&:hover': {bgcolor: '#1B1B1B'}}}>{genre.name}</MenuItem>)}
+                            </TextField>
+                            <TextField label="Tempo" variant="outlined" color='primary' onChange={(e) => setTempo(e.target.value)} sx={{bgcolor: '#111111', color: '#777777', width: '100%', mt: '20px', mb: '20px'}}/>
+                            <TextField label="Price" variant="outlined" color='primary' onChange={(e) => setPrice(e.target.value)} sx={{bgcolor: '#111111', color: '#777777', width: '100%', mt: '20px', mb: '20px'}}/>
+                            <Button type='submit' variant='contained' sx={{mt: '20px', width: '100%', padding: '15px'}}><strong>Submit</strong></Button> 
                         </form>
                         {(errors.length > 0) ?
-                            (<div>
-                            {errors.map(error => <li key={error}>{error}</li>)}
+                            (<Box sx={{mt: '20px', mb: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                            {errors.map(error => <Typography key={error} color='error'>{error}</Typography>)}
                             <br></br>
-                            </div>) 
+                            </Box>) 
                             :
                             null
                         }

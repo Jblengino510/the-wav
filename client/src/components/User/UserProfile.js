@@ -41,10 +41,7 @@ function UserProfile({ user, beats, likes, setBeats, handlePlayClick, handleLike
         <Container>
             {user ?
             <> 
-                <Typography variant='h4'>Welcome {user.username}</Typography> 
-                <Button variant='contained' onClick={() => history.push(`/${user.username}/upload`)}>Upload Beats</Button>
-                <br></br>
-                <br></br>
+                <Typography variant='h4' sx={{mt: '20px', mb: '20px', paddingTop: '20px'}}>Welcome {user.username}</Typography> 
                 {userBeats.map(beat => {
                     let foundLike = likes.find(like => like.beat_id === beat.id)
                 return (<>

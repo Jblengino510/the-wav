@@ -40,20 +40,6 @@ function LoginForm({ setUser }) {
     return (
         <Container>
             <form onSubmit={handleSubmit} autoComplete='off' style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                {/* <h3>username:</h3>
-                <input 
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                />
-                <h3>password:</h3>
-                <input 
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                />
-                <br></br>
-                <br></br> */}
                 <Typography variant='h4' sx={{mt: '20px', mb: '20px', paddingTop: '20px'}}><strong>Log In to The Wav</strong></Typography>
                 <TextField label="Username" variant="outlined" color='primary' onChange={(e) => setUsername(e.target.value)} sx={{bgcolor: '#111111', color: '#777777', width: '50%', mt: '20px', mb: '20px'}}/>
                 <TextField type='password' label="Password" variant="outlined" color='primary' onChange={(e) => setPassword(e.target.value)} sx={{bgcolor: '#111111', color: '#777777', width: '50%', mt: '20px', mb: '20px'}}/>
