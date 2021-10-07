@@ -172,7 +172,7 @@ function App() {
       {user ? 
       <>
         <ThemeProvider theme={theme}>
-        <Container sx={{color: 'white'}}>
+        <Container sx={{color: 'white', bgcolor: ''}}>
           <NavBar user={user} handleSignOut={handleSignOut}/>
           <Switch>
             <Route path='/beats'>

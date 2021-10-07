@@ -24,7 +24,9 @@ function LandingPage({ user }) {
             </>
             : 
             <>
-                <h1>Sign in please</h1>
+                <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                    <img src='/wavegif.gif' width='400px' height='400px'/>
+                </div>
                 {youtubeVideos.map(video => <iframe key={video.id.videoId} src={`https://www.youtube.com/embed/${video.id.videoId}`} height='200' width='300'></iframe>)}  
             </>
             }

@@ -95,21 +95,29 @@ function BeatForm({ user, genres, beats, setBeats }) {
 
     
     return (
-        <Container>
-            <Typography variant='h4' sx={{mt: '20px', mb: '20px', paddingTop: '20px'}}><strong>Upload A Beat</strong></Typography>
+        <Container sx={{bgcolor: ''}}>
+            <div style={{height: '200px'}}>
+                <Typography variant='h2' sx={{mt: '20px', mb: '20px', ml: '10px', paddingTop: '20px'}}><strong>Upload</strong></Typography>
+            </div>
             <div {...getRootProps()} className={`dropzone ${isDragActive ? 'active' : null}`}>
                 <input {...getInputProps()}/>
                 Drag and drop your beats here 
                 <br></br>
                 or click to choose files
+                <Typography variant='body1' sx={{mt: '20px', mb: '20px', paddingTop: '20px'}}><strong>M4A, MP3, WAV, FLAC, AAC, OGG, MP2, and WMA accepted</strong></Typography>
                 {/* <Button variant='contained' color='primary'>or click to choose files</Button> */}
             </div>
             {audioUrl ?
             <Grid container spacing={2} sx={{border: '2px dashed #001c55', mt: '20px', mb: '20px', padding: '20px'}}>
                 <Grid item xs={6} sx={imageUrl ? {backgroundImage: `url(${imageUrl})`, backgroundSize: 'cover', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'} : {bgcolor: '#000000', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                    <h1>add cover art</h1>
-                    <form onSubmit={handleImageUpload}>
-                        <input type='file' accept='image/*' onChange={(e) => setImage(e.target.files[0])}/>
+                    <form onSubmit={handleImageUpload} style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                        {imageUrl ? null 
+                        : 
+                        <>
+                        <Typography variant='h4' sx={{mb: '30px'}}><strong>Add Cover Art</strong></Typography>
+                        <TextField type='file' accept='image/*' onChange={(e) => setImage(e.target.files[0])}/>
+                        </>
+                        }
                         <br></br>
                         <br></br>
                         {image ? <Button type='submit' variant='contained' sx={{alignItems: 'center'}}>Upload image</Button> : null}

@@ -39,7 +39,7 @@ html, body {
 }
 
 .dropzone {
-  height: 8rem;
+  height: 20rem;
   margin: 1rem;
   padding: 1rem;
   border: 2px dashed #001c55;
