@@ -42,7 +42,7 @@ function BeatLibrary({ user, beats, likes, handleLikeClick, handleAddToCart }) {
                         <Typography variant='body1'>&nbsp;&nbsp;&nbsp;Released {new Intl.DateTimeFormat('en-US', options).format(Date.parse(beat.created_at))}</Typography>
                     </Grid>
                     <Grid item xs={2}>
-                        <CardMedia component='image' image={beat.image_url ? beat.image_url : '/logo512.png'} sx={{width: '150px', height: '150px', mt: '20px', padding: '10px'}}/>
+                        <CardMedia component='image' image={beat.image_url ? beat.image_url : '/iphonewav.jpg'} sx={{width: '150px', height: '150px', mt: '20px', padding: '10px'}}/>
                         {/* <PlayArrowIcon sx={{margin: '-100px auto', width: '150px', height: '150px', display: 'none', '&:hover': {display: 'inline-block'}}}/> */}
                         {/* <div style={{background: `url(${beat.image_url}) auto`}}>
                             <img src='https://www.pngrepo.com/png/13672/180/play-button.png'/>
@@ -56,6 +56,8 @@ function BeatLibrary({ user, beats, likes, handleLikeClick, handleAddToCart }) {
                             </Link>
                             <br></br>
                             <Typography variant='body1'>{beat.genre.name}</Typography>
+                            <br></br>
+                            <Typography variant='body1'>{beat.tempo} BPM</Typography>
                             <br></br>
                             {beat.is_sold ? 
                             <Button variant='contained'>

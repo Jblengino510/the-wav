@@ -100,7 +100,7 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
                 <Card key={beat.id} sx={{display: 'flex', bgcolor: '#000000', padding: '20px', border: '2px solid #222222', '&:hover': {border: '2px solid #333333'}}}>
                 <Grid container spacing={2}>
                     <Grid item xs={2}>
-                        <CardMedia component='image' image={beat.image_url ? beat.image_url : '/logo512.png'} sx={{width: '150px', height: '150px', mt: '20px', padding: '10px'}}/>
+                        <CardMedia component='image' image={beat.image_url ? beat.image_url : '/iphonewav.jpg'} sx={{width: '150px', height: '150px', mt: '20px', padding: '10px'}}/>
                     </Grid>
                     <Grid item xs={10}>
                         <Box sx={{ display: 'flex', flexDirection: 'column'}}>
@@ -119,6 +119,8 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
                                 </div>
                                 <br></br>
                                 <Typography variant='body1'>{beat.genre.name}</Typography>
+                                <br></br>
+                                <Typography variant='body1'>{beat.tempo} BPM</Typography>
                                 <br></br>
                                 {beat.is_sold ? 
                                 <Button variant='contained'>
