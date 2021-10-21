@@ -115,8 +115,7 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
                                     <PlayCircleOutlineIcon fontSize='large' sx={{width: '60px', height: '60px'}}/>
                                 </IconButton>
                                 }
-                                <Typography variant='h5' color='secondary'><strong>{beat.name}</strong>
-                                </Typography>
+                                <Typography variant='h5' color='secondary'><strong>{beat.name}</strong></Typography>
                                 </div>
                                 <br></br>
                                 <Typography variant='body1'>{beat.genre.name}</Typography>

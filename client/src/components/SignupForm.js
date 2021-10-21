@@ -37,6 +37,7 @@ function SignupForm({ setUser }) {
             }
         })
     }
+    
 
     return (
         <Container sx={{mt: '100px'}}>

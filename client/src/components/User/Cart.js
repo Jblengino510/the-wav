@@ -69,7 +69,7 @@ function Cart({ carts, setCarts, handleDeleteFromCart }) {
                                         <Typography variant='h6'>
                                             <strong>${item.beat.price}.00</strong>
                                             <IconButton onClick={() => handleDeleteFromCart(item.id)}sx={{float: 'right'}}>
-                                            <CloseIcon sx={{color: '#222222'}}/>
+                                                <CloseIcon sx={{color: '#222222'}}/>
                                             </IconButton>
                                         </Typography>
                                     </TableCell>
