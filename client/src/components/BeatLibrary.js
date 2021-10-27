@@ -34,7 +34,7 @@ function BeatLibrary({ user, beats, likes, handleLikeClick, handleAddToCart }) {
             {beats ? beats.map(beat => 
                 <>
                 <br></br>
-                <Card sx={{display: 'flex', bgcolor: '#000000', padding: '20px', border: '2px solid #222222', '&:hover': {border: '2px solid #333333'}}}>
+                <Card key={beat.id} sx={{display: 'flex', bgcolor: '#000000', padding: '20px', border: '2px solid #222222', '&:hover': {border: '2px solid #333333'}}}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                         <Avatar sx={{mr: '10px'}}/>
@@ -43,10 +43,6 @@ function BeatLibrary({ user, beats, likes, handleLikeClick, handleAddToCart }) {
                     </Grid>
                     <Grid item xs={2}>
                         <CardMedia component='image' image={beat.image_url ? beat.image_url : '/iphonewav.jpg'} sx={{width: '150px', height: '150px', mt: '20px', padding: '10px'}}/>
-                        {/* <PlayArrowIcon sx={{margin: '-100px auto', width: '150px', height: '150px', display: 'none', '&:hover': {display: 'inline-block'}}}/> */}
-                        {/* <div style={{background: `url(${beat.image_url}) auto`}}>
-                            <img src='https://www.pngrepo.com/png/13672/180/play-button.png'/>
-                        </div> */}
                     </Grid>
                     <Grid item xs={10}>
                         <Box sx={{ display: 'flex', flexDirection: 'column'}}>
@@ -79,20 +75,14 @@ function BeatLibrary({ user, beats, likes, handleLikeClick, handleAddToCart }) {
                     </Grid>
                 </Grid>
                 </Card>
-                </>
-            ) : <h1>no beats</h1>}
-            {/* <Card sx={{display: 'flex'}}>
-                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                    <CardContent></CardContent>
-                    <CardMedia component='image' image={}/>
-                </Box>
-            </Card> */}
+                </>) 
+                : 
+                <h1>no beats</h1>
+                }
         </Container>
     )
 }
 
 export default BeatLibrary
 
-{/* <IconButton size='large' color='secondary' onClick={() => toggleLike(user, beat)}sx={{ml: '5px'}}>
-                            <FavoriteIcon fontSize='medium'/>
-                        </IconButton> */}
+
