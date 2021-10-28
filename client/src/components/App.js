@@ -7,6 +7,7 @@ import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 import UserRoutes from './User/UserRoutes';
 import BeatLibrary from './BeatLibrary';
+import Footer from './Footer';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import { ParallaxProvider } from 'react-scroll-parallax';
@@ -192,13 +193,14 @@ function App() {
               <LandingPage user={user}/>
             </Route>
           </Switch>
+          <Footer />
         </div>  
         </ThemeProvider>
       </> 
       :
       <>
         <ThemeProvider theme={theme}>
-        <div style={{bgcolor: '', color: 'white'}}>
+        <div style={{color: 'white', bgcolor: ''}}>
           <NavBar user={user} handleSignOut={handleSignOut}/>
           <Switch>
             <Route path='/login'>
@@ -213,7 +215,8 @@ function App() {
             <Route path='/'>
               <LandingPage user={user}/>
             </Route>
-          </Switch>  
+          </Switch> 
+          <Footer /> 
         </div>  
         </ThemeProvider>
       </>

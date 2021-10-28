@@ -34,10 +34,10 @@ function BeatLibrary({ user, beats, likes, handleLikeClick, handleAddToCart }) {
             {beats ? beats.map(beat => 
                 <>
                 <br></br>
-                <Card key={beat.id} sx={{display: 'flex', bgcolor: '#000000', padding: '20px', border: '2px solid #222222', '&:hover': {border: '2px solid #333333'}}}>
+                <Card key={beat.id} sx={{bgcolor: '#000000', padding: '20px', border: '2px solid #222222', '&:hover': {border: '2px solid #333333'}}}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                        <Avatar sx={{mr: '10px'}}/>
+                        <Avatar src={user.avatar_url} sx={{mr: '10px'}}/>
                         <strong>{beat.user.username}</strong>
                         <Typography variant='body1'>&nbsp;&nbsp;&nbsp;Released {new Intl.DateTimeFormat('en-US', options).format(Date.parse(beat.created_at))}</Typography>
                     </Grid>

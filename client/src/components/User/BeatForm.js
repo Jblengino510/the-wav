@@ -95,7 +95,7 @@ function BeatForm({ user, genres, beats, setBeats }) {
 
     
     return (
-        <Container sx={{mt: '100px'}}>
+        <Container sx={{mt: '100px', height: '100vh'}}>
             <div style={{height: '200px'}}>
                 <Typography variant='h2' sx={{mt: '20px', mb: '20px', ml: '10px', paddingTop: '20px'}}>Upload</Typography>
             </div>

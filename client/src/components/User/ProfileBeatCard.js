@@ -1,5 +1,5 @@
-import React from 'react'
-import { useHistory, Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -14,10 +14,23 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 function ProfileBeatCard({ user, beat, foundLike, handleLikeClick }) {
+    const [ likeClicked, setLikeClicked ] = useState(false)
+
+    function toggleLike(user, beat){
+        // setBeats((beats) => [...beats, 
+        // {
+        //     ...beat, 
+        //     likes: [...beat.likes, ]
+        // }]) 
+        handleLikeClick(user, beat)
+        setLikeClicked(!likeClicked)
+    }
+
+
     return (
-        <div>
+        <>
             <br></br>
-            <Card key={beat.id} sx={{display: 'flex', bgcolor: '#000000', padding: '20px', border: '2px solid #222222', '&:hover': {border: '2px solid #333333'}}}>
+            <Card key={beat.id} sx={{bgcolor: '#000000', padding: '20px', border: '2px solid #222222', '&:hover': {border: '2px solid #333333'}}}>
                 <Grid container spacing={2}>
                     <Grid item xs={2}>
                         <CardMedia component='image' image={beat.image_url ? beat.image_url : '/iphonewav.jpg'} sx={{width: '150px', height: '150px', mt: '20px', padding: '10px'}}/>
@@ -31,7 +44,7 @@ function ProfileBeatCard({ user, beat, foundLike, handleLikeClick }) {
                                 <br></br>
                                 <Typography variant='body1'>{beat.genre.name}</Typography>
                                 <br></br>
-                                <Typography variant='body1'>{beat.tempo} BPM</Typography>
+                                <Typography variant='body1'><strong>{beat.tempo} BPM</strong></Typography>
                                 <br></br>
                                 {beat.is_sold ? 
                                 <Button variant='contained'>
@@ -47,13 +60,17 @@ function ProfileBeatCard({ user, beat, foundLike, handleLikeClick }) {
                     <Grid item xs={12}sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                         <PlayArrowIcon fontSize='large' sx={{mr: '5px'}}/> &nbsp;{beat.plays}
                         <IconButton size='large' color='secondary' onClick={() => handleLikeClick(user, beat)}sx={{ml: '5px'}}>
-                            {foundLike ? <FavoriteIcon fontSize='medium'/> : <FavoriteBorderIcon fontSize='medium'/>}
+                            {foundLike ? 
+                            <FavoriteIcon fontSize='medium'/> 
+                            : 
+                            <FavoriteBorderIcon fontSize='medium'/>
+                            }
                         </IconButton>
                         <Typography variant='subtitle1'>{beat.likes.length}</Typography>
                     </Grid>
                 </Grid>
-                </Card>
-        </div>
+            </Card>
+        </>
     )
 }
 

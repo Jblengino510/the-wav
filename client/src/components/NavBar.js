@@ -94,7 +94,7 @@ function NavBar({ user, handleSignOut }) {
                         onClick={handleClick}
                         color='secondary'
                         >
-                            <Avatar sx={{width: 32, height: 32, mr: '10px'}}></Avatar>
+                            <Avatar src={user.avatar_url} sx={{width: 32, height: 32, mr: '10px'}}/>
                             <Typography sx={{mr: '5px'}}><strong>{user.username}</strong></Typography>
                             <KeyboardArrowDownIcon onClick={handleClick}/>
                         </IconButton> 

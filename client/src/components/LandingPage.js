@@ -1,16 +1,14 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import Typography from '@mui/material/Typography';
 import { Parallax } from 'react-scroll-parallax';
+import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import Divider from '@mui/material/Divider';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import InsightsOutlinedIcon from '@mui/icons-material/InsightsOutlined';
-import CopyrightOutlinedIcon from '@mui/icons-material/CopyrightOutlined';
 
 
 function LandingPage({ user }) {
@@ -72,14 +70,6 @@ function LandingPage({ user }) {
                                 </Card>
                             </Box>
                         </div>
-                        <Divider sx={{bgcolor: '#222222'}}/>
-                    </Grid>
-                    <Grid item xs={12} sx={{padding: '60px', display: 'flex', justifyContent: 'center'}}>
-                        <Typography variant='body1'>This app was created with <strong style={{color: '#001c55', fontSize: 'large'}}>React</strong> and <strong style={{color: '#001c55', fontSize: 'large'}}>Ruby on Rails</strong>.</Typography>
-                        &nbsp;
-                        <CopyrightOutlinedIcon color='secondary' fontSize='small'/>
-                        &nbsp;
-                        <Typography variant='body1'>2021 TheWav, Inc. All rights reserved.</Typography>
                     </Grid>
                 </Grid>
             </>
@@ -125,14 +115,6 @@ function LandingPage({ user }) {
                                 </Card>
                             </Box>
                         </div>
-                        <Divider sx={{bgcolor: '#222222'}}/>
-                    </Grid>
-                    <Grid item xs={12} sx={{padding: '60px', display: 'flex', justifyContent: 'center'}}>
-                        <Typography variant='body1'>This app was created with <strong style={{color: '#001c55', fontSize: 'large'}}>React</strong> and <strong style={{color: '#001c55', fontSize: 'large'}}>Ruby on Rails</strong>.</Typography>
-                        &nbsp;
-                        <CopyrightOutlinedIcon color='secondary' fontSize='small'/>
-                        &nbsp;
-                        <Typography variant='body1'>2021 TheWav, Inc. All rights reserved.</Typography>
                     </Grid>
                 </Grid>
                 {/* {youtubeVideos.map(video => <iframe key={video.id.videoId} src={`https://www.youtube.com/embed/${video.id.videoId}`} height='200' width='300'></iframe>)}   */}

@@ -1,46 +1,51 @@
 import ProfileBeatCard from './ProfileBeatCard';
-import { useState } from 'react'
 import { useHistory, Link } from 'react-router-dom'
-import ReactAudioPlayer from 'react-audio-player'
-import AudioPlayer from 'react-h5-audio-player';
-import 'react-h5-audio-player/lib/styles.css';
 import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import IconButton from '@mui/material/IconButton';
-import Button from '@mui/material/Button';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import Avatar from '@mui/material/Avatar';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+
 
 
 function UserProfile({ user, beats, likes, setBeats, handlePlayClick, handleLikeClick }) {
-    const [ likeClicked, setLikeClicked ] = useState(false)
-    // const [ userBeats, setUserBeats ] = useState(beats)
     const history = useHistory()
-    // console.log('USER BEATS', userBeats)
     const userBeats = beats ? beats.filter(beat => beat.user_id === user.id) : null
   
-
-    function toggleLike(user, beat){
-        // setBeats((beats) => [...beats, 
-        // {
-        //     ...beat, 
-        //     likes: [...beat.likes, ]
-        // }])
-        handleLikeClick(user, beat)
-        setLikeClicked(!likeClicked)
-    }
   
 
     return (
         <Container sx={{mt: '100px'}}>
-            <Typography variant='h4' sx={{mt: '20px', mb: '20px', paddingTop: '20px'}}>Welcome {user.username}</Typography> 
+            <Card sx={{bgcolor: '#000000', padding: '50px', border: '2px solid #222222', '&:hover': {border: '2px solid #333333'}}}>
+                <Grid container>
+                    <Grid item xs={3} sx={{bgcolor: ''}}>
+                        <Avatar src={user.avatar_url} sx={{width: '200px', height: '200px'}}/>
+                    </Grid>
+                    <Grid item xs={9}>
+                        <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center', bgcolor: ''}}>
+                        <CardContent sx={{flexGrow: 1}}>
+                            <Typography variant='h4' color='secondary'>{user.username}</Typography>
+                        </CardContent>
+                        <PlayArrowIcon sx={{fontSize: '40px'}}/> &nbsp;<strong style={{fontSize: '20px'}}>{user.total_plays}</strong>
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <FavoriteIcon sx={{fontSize: '30px'}}/> &nbsp;<strong style={{fontSize: '20px'}}>{user.total_likes}</strong>
+                        </Box>
+                    </Grid>
+                </Grid>
+            </Card>
+            <br></br>
+            <Card sx={{bgcolor: '#000000', padding: '20px', border: '2px solid #222222', '&:hover': {border: '2px solid #333333'}}}>
+                <CardContent sx={{flexGrow: 1}}>
+                    <Typography variant='h4' color='secondary'>{`Beats (${user.total_beats_uploaded})`}</Typography>
+                </CardContent>
+            </Card>
             {userBeats.map(beat => {
                 let foundLike = likes.find(like => like.beat_id === beat.id)
                 return (

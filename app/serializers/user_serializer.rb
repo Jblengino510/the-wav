@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :password_digest, :avatar_url, :created_at, :total_beats_uploaded, :total_plays, :unsold_beats, :total_beats_sold, :total_earnings, :beats_sold_by_week
+  attributes :id, :username, :password_digest, :avatar_url, :created_at, :total_beats_uploaded, :total_plays, :total_likes, :unsold_beats, :total_beats_sold, :total_earnings, :beats_sold_by_week
 
   has_many :carts
 
@@ -25,6 +25,10 @@ class UserSerializer < ActiveModel::Serializer
 
   def total_plays
     self.object.beats.pluck(:plays).sum
+  end
+
+  def total_likes
+    self.object.beats.map{|beat| beat.likes.length}.sum
   end
   
 end
