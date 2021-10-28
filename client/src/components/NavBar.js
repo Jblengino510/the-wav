@@ -21,8 +21,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Badge from '@mui/material/Badge';
 import AddIcon from '@mui/icons-material/Add';
-import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
-import CardMedia from '@mui/material/CardMedia';
+
 
 function LinkTab(props) {
     return (
@@ -140,7 +139,7 @@ function NavBar({ user, handleSignOut }) {
                                 Insights
                             </MenuItem>
                             <br></br>
-                            <MenuItem sx={{bgcolor: '#000000',  paddingRight: '50px', '&:hover': {backgroundColor: '#111111'}}}>
+                            <MenuItem sx={{bgcolor: '#000000',  paddingRight: '50px', '&:hover': {backgroundColor: '#111111'}}} onClick={() => history.push(`/${user.username}/settings`)}>
                                 <ListItemIcon>
                                     <Settings fontSize="medium" color='secondary'/>
                                 </ListItemIcon>

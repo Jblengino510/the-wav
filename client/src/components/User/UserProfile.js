@@ -20,22 +20,25 @@ function UserProfile({ user, beats, likes, setBeats, handlePlayClick, handleLike
 
     return (
         <Container sx={{mt: '100px'}}>
-            <Card sx={{bgcolor: '#000000', padding: '50px', border: '2px solid #222222', '&:hover': {border: '2px solid #333333'}}}>
+            <Card sx={{backgroundImage: 'linear-gradient(0deg, #000, transparent), url(/studio.jpg)', bgcolor: '#000000', backgroundSize: 'cover', padding: '50px', border: '2px solid #222222', '&:hover': {border: '2px solid #333333'}}}>
                 <Grid container>
                     <Grid item xs={3} sx={{bgcolor: ''}}>
                         <Avatar src={user.avatar_url} sx={{width: '200px', height: '200px'}}/>
                     </Grid>
                     <Grid item xs={9}>
-                        <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center', bgcolor: ''}}>
-                        <CardContent sx={{flexGrow: 1}}>
-                            <Typography variant='h4' color='secondary'>{user.username}</Typography>
+                        <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                        <CardContent>
+                            <Typography variant='h4' color='secondary' sx={{bgcolor: 'rgba(0, 0, 0, .7)', padding: '10px'}}>{user.username}</Typography>
                         </CardContent>
-                        <PlayArrowIcon sx={{fontSize: '40px'}}/> &nbsp;<strong style={{fontSize: '20px'}}>{user.total_plays}</strong>
-                        &nbsp;
-                        &nbsp;
-                        &nbsp;
-                        &nbsp;
-                        <FavoriteIcon sx={{fontSize: '30px'}}/> &nbsp;<strong style={{fontSize: '20px'}}>{user.total_likes}</strong>
+                            <Box sx={{flexGrow: 1}}></Box>
+                            <Box sx={{bgcolor: 'rgba(0, 0, 0, .7)', padding: '10px', display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                                <PlayArrowIcon sx={{fontSize: '40px'}}/> &nbsp;<strong style={{fontSize: '20px'}}>{user.total_plays}</strong>
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                <FavoriteIcon sx={{fontSize: '30px'}}/> &nbsp;<strong style={{fontSize: '20px'}}>{user.total_likes}</strong>
+                            </Box>
                         </Box>
                     </Grid>
                 </Grid>

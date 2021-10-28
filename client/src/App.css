@@ -61,4 +61,9 @@ html, body {
   color: white;
 }
 
+.footer:hover {
+  opacity: .9;
+  cursor: pointer;
+}
+
 

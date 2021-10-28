@@ -4,10 +4,14 @@ import BeatForm from './BeatForm'
 import BeatDetails from './BeatDetails'
 import Cart from './Cart'
 import SellerDashboard from './SellerDashboard'
+import SettingsForm from './SettingsForm'
 
 function UserRoutes({ user, genres, beats, setBeats, likes, carts, setCarts, handleBeatDelete, handlePlayClick, handleLikeClick, handleDeleteFromCart }) {
     return (
         <Switch>
+            <Route path={user ? `/${user.username}/settings` : null}>
+                <SettingsForm user={user}/>
+            </Route>
             <Route path={user ? `/${user.username}/dashboard` : null}>
                 <SellerDashboard user={user}/>
             </Route>
