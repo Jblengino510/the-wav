@@ -1,8 +1,9 @@
 class LikesController < ApplicationController
 
     def index
-        user = User.find(params[:user_id])
-        render json: user.likes
+        # user = User.find(params[:user_id])
+        # render json: user.likes
+        render json: Like.all
     end
 
     def create

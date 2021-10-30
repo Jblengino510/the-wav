@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   resources :carts
-  resources :likes, only: [:create]
+  resources :likes, only: [:index, :create]
   resources :beats
   resources :genres
   resources :users do

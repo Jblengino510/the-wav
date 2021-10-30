@@ -187,7 +187,7 @@ function App() {
               <SignupForm setUser={setUser}/>
             </Route>
             <Route path={user ? `/${user.username}` : null}>
-              <UserRoutes user={user} genres={genres} beats={beats} setBeats={setBeats} likes={likes} carts={carts} setCarts={setCarts} handleBeatDelete={handleBeatDelete} handlePlayClick={handlePlayClick} handleLikeClick={handleLikeClick} handleDeleteFromCart={handleDeleteFromCart}/>
+              <UserRoutes user={user} setUser={setUser} genres={genres} beats={beats} setBeats={setBeats} likes={likes} carts={carts} setCarts={setCarts} handleBeatDelete={handleBeatDelete} handlePlayClick={handlePlayClick} handleLikeClick={handleLikeClick} handleDeleteFromCart={handleDeleteFromCart}/>
             </Route>
             <Route path='/'>
               <LandingPage user={user}/>

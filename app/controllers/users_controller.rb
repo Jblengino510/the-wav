@@ -19,7 +19,7 @@ class UsersController < ApplicationController
         render json: user, status: :created
     end
 
-    #'/editprofile'
+    #'/users/:id'
     def update
         user = User.find_by(id: session[:user_id])
         user.update!(user_params)
@@ -31,4 +31,5 @@ class UsersController < ApplicationController
     def user_params
         params.permit(:username, :password, :password_confirmation, :avatar_url)
     end
+
 end

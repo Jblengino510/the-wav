@@ -39,7 +39,7 @@ function LandingPage({ user }) {
                     </Grid>
                     <Grid item xs={12}>
                         <div style={{height: '100vh'}}>
-                            <Typography variant='h3' sx={{mt: '200px', display: 'flex', justifyContent: 'center'}}><strong>How It Works</strong></Typography>
+                            <Typography variant='h3' sx={{mt: '200px', display: 'flex', justifyContent: 'center'}}><strong>Make Noise, Be Heard</strong></Typography>
                             <Box sx={{mt: '200px', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', textAlign: 'center'}}>
                                 <Card sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', bgcolor: '#000000', padding: '20px', width: '250px'}}>
                                     <CloudUploadOutlinedIcon color='primary' fontSize='large' sx={{width: '100px', height: '100px'}}/>

@@ -120,7 +120,11 @@ function BeatForm({ user, genres, beats, setBeats }) {
                         }
                         <br></br>
                         <br></br>
-                        {image ? <Button type='submit' variant='contained' sx={{alignItems: 'center'}}>Upload image</Button> : null}
+                        {image ? 
+                        <Button type='submit' variant='contained' sx={{alignItems: 'center'}}>Upload image</Button> 
+                        : 
+                        null
+                        }
                     </form>
                 </Grid>
                 <Grid item xs={6} sx={{bgcolor: '#000000'}}>
