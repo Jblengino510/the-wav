@@ -10,13 +10,16 @@ import TextField from '@mui/material/TextField';
 
 function SettingsForm({ user, setUser }) {
     const [ username, setUsername ] = useState(user.username)
-    const [ avatarUrl, setAvatarUrl ] = useState('')
+    const [ avatarUrl, setAvatarUrl ] = useState(user.avatar_url)
     const [ image, setImage ] = useState(null)
+    const [ bannerUrl, setBannerUrl ] = useState(user.banner_url)
+    const [ bannerImage, setBannerImage ] = useState(null)
     const [ errors, setErrors ] = useState([])
     const history = useHistory()
     console.log(user)
     console.log('AVATAR', avatarUrl)
     console.log('ERRORS', errors)
+    console.log('BANNER', bannerUrl)
 
 
     function handleImageUpload(e){
@@ -34,11 +37,27 @@ function SettingsForm({ user, setUser }) {
     }
 
 
+    function handleBannerImageUpload(e){
+        e.preventDefault()
+        const formData = new FormData()
+        formData.append('file', bannerImage)
+        formData.append('upload_preset', 'thewav')
+        formData.append('cloud_name', 'dczg4dzfm')
+        fetch('https://api.cloudinary.com/v1_1/dczg4dzfm/image/upload', {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => setBannerUrl(data.url))
+    }
+
+
     function handleEditProfile(e){
         e.preventDefault()
         const profileObj = {
             username: username, 
-            avatar_url: avatarUrl
+            avatar_url: avatarUrl,
+            banner_url: bannerUrl
         }
         fetch('/editprofile', {
             method: 'PATCH',
@@ -72,6 +91,15 @@ function SettingsForm({ user, setUser }) {
                         <Typography variant='h5' sx={{mb: '10px', paddingTop: '20px'}}><strong>Profile Picture</strong></Typography>
                         <TextField type='file' accept='image/*' onChange={(e) => setImage(e.target.files[0])} sx={{bgcolor: '#222222', color: '#777777', width: '100%', mt: '20px', mb: '20px'}}/>
                         {image ? 
+                        <Button type='submit' variant='contained' sx={{mt: '20px', width: '25%'}}><strong>Upload Image</strong></Button> 
+                        : 
+                        null
+                        }
+                    </form>
+                    <form onSubmit={handleBannerImageUpload} autoComplete='off'>
+                        <Typography variant='h5' sx={{mb: '10px', paddingTop: '20px'}}><strong>Banner Image</strong></Typography>
+                        <TextField type='file' accept='image/*' onChange={(e) => setBannerImage(e.target.files[0])} sx={{bgcolor: '#222222', color: '#777777', width: '100%', mt: '20px', mb: '20px'}}/>
+                        {bannerImage ? 
                         <Button type='submit' variant='contained' sx={{mt: '20px', width: '25%'}}><strong>Upload Image</strong></Button> 
                         : 
                         null

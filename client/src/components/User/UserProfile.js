@@ -20,7 +20,7 @@ function UserProfile({ user, beats, likes, setBeats, handlePlayClick, handleLike
 
     return (
         <Container sx={{mt: '100px'}}>
-            <Card sx={{backgroundImage: 'linear-gradient(0deg, #000, transparent), url(/studio.jpg)', bgcolor: '#000000', backgroundSize: 'cover', padding: '50px', border: '2px solid #222222', '&:hover': {border: '2px solid #333333'}}}>
+            <Card sx={{backgroundImage: `linear-gradient(0deg, #000, transparent), url(${user.banner_url})`, bgcolor: '#000000', backgroundSize: 'cover', padding: '50px', border: '2px solid #222222', '&:hover': {border: '2px solid #333333'}}}>
                 <Grid container>
                     <Grid item xs={3} sx={{bgcolor: ''}}>
                         <Avatar src={user.avatar_url} sx={{width: '200px', height: '200px'}}/>

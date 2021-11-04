@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :avatar_url, :created_at, :total_beats_uploaded, :total_plays, :total_likes, :unsold_beats, :total_beats_sold, :total_earnings, :beats_sold_by_week
+  attributes :id, :username, :avatar_url, :banner_url, :created_at, :total_beats_uploaded, :total_plays, :total_likes, :unsold_beats, :total_beats_sold, :total_earnings, :beats_sold_by_week
 
   has_many :carts
 
