@@ -129,7 +129,7 @@ function NavBar({ user, handleSignOut }) {
                         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
                             <MenuItem sx={{bgcolor: '#000000',  paddingRight: '50px', '&:hover': {bgcolor: '#111111'}}} onClick={() => history.push(`/${user.username}`)} >
-                                <Avatar /> Profile
+                                <Avatar src={user.avatar_url}/> Profile
                             </MenuItem>
                             <Divider sx={{bgcolor: '#222222'}}/>
                             <MenuItem sx={{bgcolor: '#000000',  paddingRight: '50px', '&:hover': {backgroundColor: '#111111'}}} onClick={() => history.push(`/${user.username}/dashboard`)}>
