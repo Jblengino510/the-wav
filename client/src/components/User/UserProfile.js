@@ -40,7 +40,7 @@ function UserProfile({ user, beats, likes, setBeats, handlePlayClick, handleLike
                                 &nbsp;
                                 &nbsp;
                                 &nbsp;
-                                <FavoriteIcon sx={{fontSize: '30px'}}/> &nbsp;<strong style={{fontSize: '20px'}}>{user.total_likes}</strong>
+                                <FavoriteIcon sx={{fontSize: '30px'}}/> &nbsp;&nbsp;<strong style={{fontSize: '20px'}}>{user.total_likes}</strong>
                             </Box>
                         </Box>
                     </Grid>
