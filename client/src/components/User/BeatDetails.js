@@ -23,6 +23,7 @@ import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
+import Tooltip from '@mui/material/Tooltip';
 
 
 
@@ -107,29 +108,34 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
                             <CardContent>
                                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', mr: '2vh'}}>
                                 {playClicked ? 
-                                <IconButton size='large' color='secondary' onClick={() => togglePlayButton(beat)}>
-                                    <PauseCircleOutlineIcon fontSize='large' sx={{width: '60px', height: '60px'}}/>
-                                </IconButton> 
+                                    <IconButton size='large' color='secondary' onClick={() => togglePlayButton(beat)}>
+                                        <PauseCircleOutlineIcon fontSize='large' sx={{width: '60px', height: '60px'}}/>
+                                    </IconButton> 
                                 : 
-                                <IconButton size='large' color='secondary' onClick={togglePlayButton}>
-                                    <PlayCircleOutlineIcon fontSize='large' sx={{width: '60px', height: '60px'}}/>
-                                </IconButton>
+                                    <IconButton size='large' color='secondary' onClick={togglePlayButton}>
+                                        <PlayCircleOutlineIcon fontSize='large' sx={{width: '60px', height: '60px'}}/>
+                                    </IconButton>
                                 }
                                 <Typography variant='h5' color='secondary'><strong>{beat.name}</strong></Typography>
                                 </div>
                                 <br></br>
                                 <Typography variant='body1'>{beat.genre.name}</Typography>
                                 <br></br>
-                                <Typography variant='body1'>{beat.tempo} BPM</Typography>
+                                <Typography variant='body1'><strong>{beat.tempo} BPM</strong></Typography>
                                 <br></br>
                                 {beat.is_sold ? 
-                                <Button variant='contained'>
-                                <strong>sold</strong>
-                                </Button> 
+                                    <Tooltip title='Sorry, somebody already bought this beat' placement='bottom-start' arrow>
+                                        <Button variant='contained'>
+                                            <strong>sold</strong>
+                                        </Button> 
+                                    </Tooltip> 
                                 : 
-                                <Button variant='contained' startIcon={<ShoppingCartOutlinedIcon color='secondary'/>}>
-                                    <strong>${beat.price}.00</strong>
-                                </Button>}
+                                    <Tooltip title='Add to Cart' placement='bottom-start' arrow>
+                                        <Button variant='contained' startIcon={<ShoppingCartOutlinedIcon color='secondary'/>}>
+                                            <strong>${beat.price}.00</strong>
+                                        </Button>
+                                    </Tooltip>
+                                }
                             </CardContent>
                         </Box>
                     </Grid>

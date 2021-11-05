@@ -12,6 +12,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import Tooltip from '@mui/material/Tooltip';
 
 function ProfileBeatCard({ user, beat, foundLike, handleLikeClick }) {
     const [ likeClicked, setLikeClicked ] = useState(false)
@@ -47,13 +48,18 @@ function ProfileBeatCard({ user, beat, foundLike, handleLikeClick }) {
                                 <Typography variant='body1'><strong>{beat.tempo} BPM</strong></Typography>
                                 <br></br>
                                 {beat.is_sold ? 
-                                <Button variant='contained'>
-                                <strong>sold</strong>
-                            </Button> 
-                            : 
-                            <Button variant='contained' startIcon={<ShoppingCartOutlinedIcon color='secondary'/>}>
-                                    <strong>${beat.price}.00</strong>
-                                </Button>}
+                                <Tooltip title='Sorry, somebody already bought this beat' placement='bottom-start' arrow>
+                                    <Button variant='contained'>
+                                        <strong>sold</strong>
+                                    </Button> 
+                                </Tooltip>
+                                : 
+                                <Tooltip title='Add to Cart' placement='bottom' arrow>
+                                    <Button variant='contained' startIcon={<ShoppingCartOutlinedIcon color='secondary'/>}>
+                                        <strong>${beat.price}.00</strong>
+                                    </Button>
+                                </Tooltip>
+                                }
                             </CardContent>
                         </Box>
                     </Grid>
@@ -61,9 +67,13 @@ function ProfileBeatCard({ user, beat, foundLike, handleLikeClick }) {
                         <PlayArrowIcon fontSize='large' sx={{mr: '5px'}}/> &nbsp;{beat.plays}
                         <IconButton size='large' color='secondary' onClick={() => handleLikeClick(user, beat)}sx={{ml: '5px'}}>
                             {foundLike ? 
-                            <FavoriteIcon fontSize='medium'/> 
+                            <Tooltip title='Unlike' placement='top-start' arrow>
+                                <FavoriteIcon fontSize='medium'/> 
+                            </Tooltip>
                             : 
-                            <FavoriteBorderIcon fontSize='medium'/>
+                            <Tooltip title='Like' placement='top-start' arrow>
+                                <FavoriteBorderIcon fontSize='medium'/>
+                            </Tooltip>
                             }
                         </IconButton>
                         <Typography variant='subtitle1'>{beat.likes.length}</Typography>

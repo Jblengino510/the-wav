@@ -9,6 +9,7 @@ import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import Tooltip from '@mui/material/Tooltip';
 
 
 
@@ -20,10 +21,12 @@ function UserProfile({ user, beats, likes, setBeats, handlePlayClick, handleLike
 
     return (
         <Container sx={{mt: '100px'}}>
-            <Card sx={{backgroundImage: `linear-gradient(0deg, #000, transparent), url(${user.banner_url})`, bgcolor: '#000000', backgroundSize: 'cover', padding: '50px', border: '2px solid #222222', '&:hover': {border: '2px solid #333333'}}}>
+            <Card sx={{backgroundImage: `linear-gradient(0deg, #000, transparent), url(${user.banner_url})`, bgcolor: '#000000', backgroundSize: 'cover', padding: '50px', border: '2px solid #222222'}}>
                 <Grid container>
                     <Grid item xs={3} sx={{bgcolor: ''}}>
-                        <Avatar src={user.avatar_url} sx={{width: '200px', height: '200px'}}/>
+                        <Tooltip title='Change profile picture' placement='bottom' arrow>
+                            <Avatar src={user.avatar_url} onClick={() => history.push(`/${user.username}/settings`)} sx={{width: '200px', height: '200px', '&:hover': {cursor: 'pointer'}}}/>
+                        </Tooltip>
                     </Grid>
                     <Grid item xs={9}>
                         <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
@@ -44,7 +47,7 @@ function UserProfile({ user, beats, likes, setBeats, handlePlayClick, handleLike
                 </Grid>
             </Card>
             <br></br>
-            <Card sx={{bgcolor: '#000000', padding: '20px', border: '2px solid #222222', '&:hover': {border: '2px solid #333333'}}}>
+            <Card sx={{bgcolor: '#000000', padding: '20px', border: '2px solid #222222'}}>
                 <CardContent sx={{flexGrow: 1}}>
                     <Typography variant='h4' color='secondary'>{`Beats (${user.total_beats_uploaded})`}</Typography>
                 </CardContent>

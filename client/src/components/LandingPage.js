@@ -32,7 +32,7 @@ function LandingPage({ user }) {
             <>
                 <Grid container>
                     <Grid item xs={12}>
-                        <div style={{backgroundColor: 'rgba(0, 0, 0, .4)', backgroundImage: 'linear-gradient(0deg, #000, transparent), url(/studio.jpg)', backgroundSize: 'cover', backgroundBlendMode: 'multiply', height: '100vh', display: 'flex', alignItems: 'center'}}>
+                        <div style={{backgroundColor: 'rgba(0, 0, 0, .3)', backgroundImage: 'linear-gradient(0deg, #000, transparent), url(/studio.jpg)', backgroundSize: 'cover', backgroundBlendMode: 'multiply', height: '100vh', display: 'flex', alignItems: 'center'}}>
                         <Typography variant='h4' sx={{ml: '40px'}}><strong>BUY & SELL BEATS FOR FREE</strong></Typography>
                         <Button component={Link} to='/signup' variant='contained' sx={{ml: '20px', padding: '20px', width: '200px'}}><strong>Become a Member</strong></Button>
                         </div>
@@ -77,7 +77,7 @@ function LandingPage({ user }) {
             <>
                 <Grid container>
                     <Grid item xs={12}>
-                        <div style={{backgroundColor: 'rgba(0, 0, 0, .4)', backgroundImage: 'linear-gradient(0deg, #000, transparent), url(/studio.jpg)', backgroundSize: 'cover', backgroundBlendMode: 'multiply', height: '100vh', display: 'flex', alignItems: 'center'}}>
+                        <div style={{backgroundColor: 'rgba(0, 0, 0, .3)', backgroundImage: 'linear-gradient(0deg, #000, transparent), url(/studio.jpg)', backgroundSize: 'cover', backgroundBlendMode: 'multiply', height: '100vh', display: 'flex', alignItems: 'center'}}>
                         <Typography variant='h4' sx={{ml: '40px'}}><strong>BUY & SELL BEATS FOR FREE</strong></Typography>
                         <Button component={Link} to='/signup' variant='contained' sx={{ml: '20px', padding: '20px', width: '200px'}}><strong>Become a Member</strong></Button>
                         </div>

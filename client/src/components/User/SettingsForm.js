@@ -16,10 +16,6 @@ function SettingsForm({ user, setUser }) {
     const [ bannerImage, setBannerImage ] = useState(null)
     const [ errors, setErrors ] = useState([])
     const history = useHistory()
-    console.log(user)
-    console.log('AVATAR', avatarUrl)
-    console.log('ERRORS', errors)
-    console.log('BANNER', bannerUrl)
 
 
     function handleImageUpload(e){
@@ -107,10 +103,16 @@ function SettingsForm({ user, setUser }) {
                     </form>
                     <form onSubmit={handleEditProfile} autoComplete='off'>
                         <br></br>
-                        <br></br>
                         <Button type='submit' variant='contained' sx={{mt: '20px', width: '100%', padding: '20px'}}><strong>Save Changes</strong></Button>
                     </form>
                 </Grid>
+                {(errors.length > 0) ?
+                    (<Box sx={{mt: '20px', mb: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                    {errors.map(error => <Typography key={error} color='error'>{error}</Typography>)}
+                    </Box>) 
+                    :
+                    null
+                }
             </Grid>
         </Container>
     )
