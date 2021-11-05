@@ -40,7 +40,7 @@ function BeatLibrary({ user, beats, likes, handleLikeClick, handleAddToCart }) {
                         bgcolor: '#000000', 
                         color: 'white',
                         width: '100%', 
-                        border: '4px solid #001c55',
+                        border: '4px solid #222222',
                         '&:hover': {border: '4px solid #001c55'}
                     }}
                 />
