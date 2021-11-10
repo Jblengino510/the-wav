@@ -42,7 +42,8 @@ function SignupForm({ setUser }) {
     return (
         <Container sx={{mt: '100px'}}>
             <form onSubmit={handleSignUpSubmit} autoComplete='off' style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                <Typography variant='h4' sx={{mt: '20px', mb: '20px', paddingTop: '20px'}}><strong>Sign Up to The Wav</strong></Typography>
+                <img src='/wavicon.png' width='70px' height='70px'/>
+                <Typography variant='h3' sx={{mt: '20px', mb: '20px', paddingTop: '20px'}}>Join The Wav</Typography>
                 <TextField label="Username" variant="outlined" color='primary' onChange={(e) => setUsername(e.target.value)} sx={{bgcolor: '#222222', color: '#777777', width: '50%', mt: '20px', mb: '20px'}}/>
                 <TextField type='password' label="Password" variant="outlined" color='primary' onChange={(e) => setPassword(e.target.value)} sx={{bgcolor: '#222222', color: '#777777', width: '50%', mt: '20px', mb: '20px'}}/>
                 <TextField type='password' label="Confirm Password" variant="outlined" color='primary' onChange={(e) => setPasswordConfirmation(e.target.value)} sx={{bgcolor: '#222222', color: '#777777', width: '50%', mt: '20px', mb: '20px'}}/>

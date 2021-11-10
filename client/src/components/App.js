@@ -34,7 +34,6 @@ function App() {
   const [ likes, setLikes ] = useState([])
   const [ carts, setCarts ] = useState([])
   const history = useHistory()
-  // console.log(carts)
   
 
   useEffect(() => {
@@ -171,7 +170,7 @@ function App() {
 
   return (
     <>
-      {user ? 
+      { user ? 
       <>
         <ThemeProvider theme={theme}>
         <div style={{color: 'white', bgcolor: ''}}>
@@ -203,15 +202,15 @@ function App() {
         <div style={{color: 'white', bgcolor: ''}}>
           <NavBar user={user} handleSignOut={handleSignOut}/>
           <Switch>
+            <Route path='/beats'>
+              <BeatLibrary user={user} beats={beats} likes={likes} handleLikeClick={handleLikeClick} handleAddToCart={handleAddToCart}/>
+            </Route>
             <Route path='/login'>
               <LoginForm setUser={setUser}/>
             </Route>
             <Route path='/signup'>
               <SignupForm setUser={setUser}/>
             </Route>
-            {/* <Route path={user ? `/${user.username}` : null}>
-              <UserRoutes user={user} setBeats={setBeats}/>
-            </Route> */}
             <Route path='/'>
               <LandingPage user={user}/>
             </Route>

@@ -6,14 +6,18 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
+import Slider from '@mui/material/Slider';
 
 
 
 function BeatLibrary({ user, beats, likes, handleLikeClick, handleAddToCart }) {
     const [ search, setSearch ] = useState('')
+    const [ searchClicked, setSearchClicked ] = useState(false)
+    const [ value, setValue ] = useState(0)
     const searchedBeats = beats.filter(beat => 
         beat.name.toLowerCase().includes(search.toLowerCase()) || beat.user.username.toLowerCase().includes(search.toLowerCase())
     )
+    
 
     
     return (
@@ -28,6 +32,7 @@ function BeatLibrary({ user, beats, likes, handleLikeClick, handleAddToCart }) {
                     fullWidth 
                     placeholder='Search by beat name, or producer'
                     value={search} 
+                    onClick={() => setSearchClicked(!searchClicked)}
                     onChange={(e) => setSearch(e.target.value)} 
                     InputProps={{
                         endAdornment: (
@@ -40,10 +45,12 @@ function BeatLibrary({ user, beats, likes, handleLikeClick, handleAddToCart }) {
                         bgcolor: '#000000', 
                         color: 'white',
                         width: '100%', 
-                        border: '4px solid #222222',
-                        '&:hover': {border: '4px solid #001c55'}
+                        border: `${searchClicked ? '4px solid #001c55' : '4px solid #222222'}`
                     }}
                 />
+            </Box>
+            <Box>
+                {/* <Slider valueLabelDisplay="auto" min={0} max={300} value={value} onChange={(e) => setValue(e.target.value)}/> */}
             </Box>
             <Typography variant='h4'>Beats</Typography>
             {beats ? 

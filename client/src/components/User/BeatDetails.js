@@ -39,6 +39,7 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
     const [ playClicked, setPlayClicked ] = useState(false)
     const params = useParams()
     let genreArr = genres
+    let foundLike = likes.find(like => like.beat_id === beat.id)
 
 
     useEffect(() => {
@@ -48,7 +49,7 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
                 res.json().then(data => setBeat(data))
             }
         })
-    }, [])
+    }, [likes])
 
 
     function handleEditBeat(){
@@ -83,10 +84,12 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
         setLikeClicked(!likeClicked)
     }
 
+    //Modal
     function handleClose(){
         setOpen(false)
     }
 
+    //Audioplayer
     function togglePlayButton(beat){
         setPlayClicked(!playClicked)
         handlePlayClick(beat)
@@ -108,13 +111,13 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
                             <CardContent>
                                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', mr: '2vh'}}>
                                 {playClicked ? 
-                                    <IconButton size='large' color='secondary' onClick={() => togglePlayButton(beat)}>
-                                        <PauseCircleOutlineIcon fontSize='large' sx={{width: '60px', height: '60px'}}/>
-                                    </IconButton> 
+                                <IconButton size='large' color='secondary' onClick={() => togglePlayButton(beat)}>
+                                    <PauseCircleOutlineIcon fontSize='large' sx={{width: '60px', height: '60px'}}/>
+                                </IconButton> 
                                 : 
-                                    <IconButton size='large' color='secondary' onClick={togglePlayButton}>
-                                        <PlayCircleOutlineIcon fontSize='large' sx={{width: '60px', height: '60px'}}/>
-                                    </IconButton>
+                                <IconButton size='large' color='secondary' onClick={togglePlayButton}>
+                                    <PlayCircleOutlineIcon fontSize='large' sx={{width: '60px', height: '60px'}}/>
+                                </IconButton>
                                 }
                                 <Typography variant='h5' color='secondary'><strong>{beat.name}</strong></Typography>
                                 </div>
@@ -124,17 +127,17 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
                                 <Typography variant='body1'><strong>{beat.tempo} BPM</strong></Typography>
                                 <br></br>
                                 {beat.is_sold ? 
-                                    <Tooltip title='Sorry, somebody already bought this beat' placement='bottom-start' arrow>
-                                        <Button variant='contained'>
+                                <Tooltip title='Sorry, somebody already bought this beat' placement='bottom-start' arrow>
+                                    <Button variant='contained'>
                                             <strong>sold</strong>
-                                        </Button> 
-                                    </Tooltip> 
+                                    </Button> 
+                                </Tooltip> 
                                 : 
-                                    <Tooltip title='Add to Cart' placement='bottom-start' arrow>
-                                        <Button variant='contained' startIcon={<ShoppingCartOutlinedIcon color='secondary'/>}>
+                                <Tooltip title='Add to Cart' placement='bottom-start' arrow>
+                                    <Button variant='contained' startIcon={<ShoppingCartOutlinedIcon color='secondary'/>}>
                                             <strong>${beat.price}.00</strong>
-                                        </Button>
-                                    </Tooltip>
+                                    </Button>
+                                </Tooltip>
                                 }
                             </CardContent>
                         </Box>
@@ -142,7 +145,15 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
                     <Grid item xs={12}sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                         <PlayArrowIcon fontSize='large' sx={{mr: '5px'}}/> &nbsp;{beat.plays}
                         <IconButton size='large' color='secondary' onClick={() => handleLikeClick(user, beat)}sx={{ml: '5px'}}>
-                            <FavoriteIcon fontSize='medium'/>
+                            {foundLike ? 
+                            <Tooltip title='Unlike' placement='top-start' arrow>
+                                <FavoriteIcon fontSize='medium'/> 
+                            </Tooltip>
+                            : 
+                            <Tooltip title='Like' placement='top-start' arrow>
+                                <FavoriteBorderIcon fontSize='medium'/>
+                            </Tooltip>
+                            }
                         </IconButton>
                         <Typography variant='subtitle1'>{beat.likes.length}</Typography>
                     </Grid>

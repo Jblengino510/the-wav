@@ -14,6 +14,7 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
+import Tooltip from '@mui/material/Tooltip';
 
 
 function BeatForm({ user, genres, beats, setBeats }) {
@@ -97,7 +98,7 @@ function BeatForm({ user, genres, beats, setBeats }) {
     return (
         <Container sx={{mt: '100px'}}>
             <div style={{height: '200px'}}>
-                <Typography variant='h2' sx={{mt: '20px', mb: '20px', ml: '10px', paddingTop: '20px'}}>Upload</Typography>
+                <Typography variant='h3' sx={{mt: '20px', mb: '20px', ml: '10px', paddingTop: '20px'}}>Upload</Typography>
             </div>
             <div {...getRootProps()} className={`dropzone ${isDragActive ? 'active' : null}`}>
                 <input {...getInputProps()}/>
@@ -109,9 +110,25 @@ function BeatForm({ user, genres, beats, setBeats }) {
             </div>
             {audioUrl ?
             <Grid container spacing={2} sx={{border: '2px dashed #001c55', mt: '20px', mb: '20px', padding: '20px'}}>
-                <Grid item xs={6} sx={imageUrl ? {backgroundImage: `url(${imageUrl})`, backgroundSize: 'cover', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'} : {bgcolor: '#000000', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                <Grid item xs={6} sx={imageUrl ? 
+                    {backgroundImage: `url(${imageUrl})`, 
+                    backgroundSize: 'cover', 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    justifyContent: 'center', 
+                    alignItems: 'center'
+                    } 
+                    : 
+                    {bgcolor: '#000000', 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    justifyContent: 'center', 
+                    alignItems: 'center'
+                    }}
+                    >
                     <form onSubmit={handleImageUpload} style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                        {imageUrl ? null 
+                        {imageUrl ? 
+                        null 
                         : 
                         <>
                         <Typography variant='h4' sx={{mb: '30px'}}><strong>Add Cover Art</strong></Typography>
@@ -121,7 +138,9 @@ function BeatForm({ user, genres, beats, setBeats }) {
                         <br></br>
                         <br></br>
                         {image ? 
-                        <Button type='submit' variant='contained' sx={{alignItems: 'center'}}>Upload image</Button> 
+                        <Tooltip title='Click to upload image' placement='bottom' arrow>
+                            <Button type='submit' variant='contained' sx={{alignItems: 'center'}}>Upload image</Button> 
+                        </Tooltip>
                         : 
                         null
                         }
