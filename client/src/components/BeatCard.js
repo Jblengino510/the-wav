@@ -116,7 +116,7 @@ function BeatCard({ user, beat, foundLike, handleLikeClick, handleAddToCart }) {
                                     </Button> 
                                 </Tooltip>
                                 : 
-                                <Tooltip title='You need an account to buy this beat' placement='bottom' arrow>
+                                <Tooltip title='You need an account to purchase beats' placement='bottom' arrow>
                                     <Button variant='contained' startIcon={<ShoppingCartOutlinedIcon color='secondary'/>}>
                                         <strong>${beat.price}.00</strong>
                                     </Button>
@@ -128,7 +128,7 @@ function BeatCard({ user, beat, foundLike, handleLikeClick, handleAddToCart }) {
                         <Grid item xs={12} sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                             <PlayArrowIcon fontSize='large' sx={{mr: '5px'}}/> &nbsp;{beat.plays}
                             <IconButton size='large' color='secondary' sx={{ml: '5px'}}>
-                                <Tooltip title='Please sign up for an account to like this beat' placement='top-start' arrow>
+                                <Tooltip title='You need an account to like beats' placement='top-start' arrow>
                                     <FavoriteBorderIcon fontSize='medium'/>
                                 </Tooltip>
                             </IconButton>
