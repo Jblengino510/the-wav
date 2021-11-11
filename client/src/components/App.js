@@ -8,6 +8,7 @@ import SignupForm from './SignupForm';
 import UserRoutes from './User/UserRoutes';
 import BeatLibrary from './BeatLibrary';
 import Footer from './Footer';
+import ScrollToTop from './ScrollToTop';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import { ParallaxProvider } from 'react-scroll-parallax';
@@ -174,6 +175,7 @@ function App() {
       <>
         <ThemeProvider theme={theme}>
         <div style={{color: 'white', bgcolor: ''}}>
+          <ScrollToTop />
           <NavBar user={user} handleSignOut={handleSignOut}/>
           <Switch>
             <Route path='/beats'>
@@ -200,6 +202,7 @@ function App() {
       <>
         <ThemeProvider theme={theme}>
         <div style={{color: 'white', bgcolor: ''}}>
+          <ScrollToTop />
           <NavBar user={user} handleSignOut={handleSignOut}/>
           <Switch>
             <Route path='/beats'>
