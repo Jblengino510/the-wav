@@ -102,40 +102,44 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
             <>
                 <br></br>
                 <Card key={beat.id} sx={{display: 'flex', bgcolor: '#000000', padding: '20px', border: '2px solid #222222', '&:hover': {border: '2px solid #333333'}}}>
-                <Grid container spacing={2}>
+                <Grid container>
                     <Grid item xs={2}>
-                        <CardMedia component='image' image={beat.image_url ? beat.image_url : '/iphonewav.jpg'} sx={{width: '150px', height: '150px', mt: '20px', padding: '10px'}}/>
+                        <CardMedia component='image' image={beat.image_url ? beat.image_url : '/iphonewav.jpg'} sx={{width: '200px', height: '200px', mt: '20px', padding: '10px'}}/>
                     </Grid>
                     <Grid item xs={10}>
-                        <Box sx={{ display: 'flex', flexDirection: 'column'}}>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', ml: '50px'}}>
                             <CardContent>
-                                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', mr: '2vh'}}>
+                                <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                                 {playClicked ? 
-                                <IconButton size='large' color='secondary' onClick={() => togglePlayButton(beat)}>
-                                    <PauseCircleOutlineIcon fontSize='large' sx={{width: '60px', height: '60px'}}/>
+                                <IconButton size='large' color='secondary' onClick={() => togglePlayButton(beat)} sx={{padding: '0', mr: '10px'}}>
+                                    <PauseCircleOutlineIcon fontSize='large' sx={{width: '70px', height: '70px'}}/>
                                 </IconButton> 
                                 : 
-                                <IconButton size='large' color='secondary' onClick={togglePlayButton}>
-                                    <PlayCircleOutlineIcon fontSize='large' sx={{width: '60px', height: '60px'}}/>
+                                <IconButton size='large' color='secondary' onClick={togglePlayButton} sx={{padding: '0', mr: '10px'}}>
+                                    <PlayCircleOutlineIcon fontSize='large' sx={{width: '70px', height: '70px'}}/>
                                 </IconButton>
                                 }
-                                <Typography variant='h5' color='secondary'><strong>{beat.name}</strong></Typography>
-                                </div>
-                                <br></br>
+                                <Typography variant='h5' color='secondary'>
+                                    <strong>{beat.name}</strong>
+                                </Typography>
+                                </Box>
+                                <br />
                                 <Typography variant='body1'>{beat.genre.name}</Typography>
-                                <br></br>
-                                <Typography variant='body1'><strong>{beat.tempo} BPM</strong></Typography>
-                                <br></br>
+                                <br />
+                                <Typography variant='body1'>
+                                    <strong>{beat.tempo} BPM</strong>
+                                </Typography>
+                                <br />
                                 {beat.is_sold ? 
                                 <Tooltip title='Sorry, somebody already bought this beat' placement='bottom-start' arrow>
                                     <Button variant='contained'>
-                                            <strong>sold</strong>
+                                        <strong>sold</strong>
                                     </Button> 
                                 </Tooltip> 
                                 : 
                                 <Tooltip title='Add to Cart' placement='bottom-start' arrow>
                                     <Button variant='contained' startIcon={<ShoppingCartOutlinedIcon color='secondary'/>}>
-                                            <strong>${beat.price}.00</strong>
+                                        <strong>${beat.price}.00</strong>
                                     </Button>
                                 </Tooltip>
                                 }
@@ -159,19 +163,23 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
                     </Grid>
                     <Grid item xs={12}>
                         {playClicked ? 
-                        <div onClick={() => handlePlayClick(beat)}>
+                        <Box onClick={() => handlePlayClick(beat)}>
                             <AudioPlayer src={beat.audio_url} controls autoPlay/>
-                        </div> 
+                        </Box> 
                         : 
                         null
                         }
                     </Grid>
                 </Grid>
                 </Card>
-                <br></br>
-                <br></br>
-                <Button size='large'  variant='contained' onClick={() => setOpen(true)} sx={{mr: '20px'}}>Edit</Button>
-                <Button size='large' variant='contained' onClick={() => handleBeatDelete(beat.id)}>Delete</Button>
+                <br />
+                <br />
+                <Button size='large'  variant='contained' onClick={() => setOpen(true)} sx={{mr: '20px'}}>
+                    Edit
+                </Button>
+                <Button size='large' variant='contained' onClick={() => handleBeatDelete(beat.id)}>
+                    Delete
+                </Button>
                 <Modal 
                 open={open} 
                 onClose={!open} 
@@ -186,7 +194,7 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
                             <TextField label="Name" variant="outlined" color='primary' onChange={(e) => setName(e.target.value)} sx={{bgcolor: '#222222', color: '#777777', width: '100%', mb: '20px'}}/>
                             <TextField select label="Genre" variant="outlined" color='primary' onChange={(e) => setGenre(e.target.value)} sx={{bgcolor: '#222222', color: '#777777', width: '100%', mt: '20px', mb: '20px'}}>
                                 <MenuItem value="" sx={{bgcolor: '#222222', color: '#777777', '&:hover': {bgcolor: '#1B1B1B'}}}>--</MenuItem>
-                                {genreArr.map(genre => <MenuItem value={genre.id} sx={{bgcolor: '#222222', color: '#777777', '&:hover': {bgcolor: '#1B1B1B'}}}>{genre.name}</MenuItem>)}
+                                {genreArr.map(genre => <MenuItem key={genre.id} value={genre.id} sx={{bgcolor: '#222222', color: '#777777', '&:hover': {bgcolor: '#1B1B1B'}}}>{genre.name}</MenuItem>)}
                             </TextField>
                             <TextField label="Tempo" variant="outlined" color='primary' onChange={(e) => setTempo(e.target.value)} sx={{bgcolor: '#222222', color: '#777777', width: '100%', mt: '20px', mb: '20px'}}/>
                             <TextField label="Price" variant="outlined" color='primary' onChange={(e) => setPrice(e.target.value)} sx={{bgcolor: '#222222', color: '#777777', width: '100%', mt: '20px', mb: '20px'}}/>
@@ -195,7 +203,7 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
                         {(errors.length > 0) ?
                             (<Box sx={{mt: '20px', mb: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                             {errors.map(error => <Typography key={error} color='error'>{error}</Typography>)}
-                            <br></br>
+                            <br />
                             </Box>) 
                             :
                             null

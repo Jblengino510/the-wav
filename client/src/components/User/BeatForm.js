@@ -1,9 +1,7 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDropzone } from 'react-dropzone'
 import Button from '@mui/material/Button';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import LinearProgress from '@mui/material/LinearProgress';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
@@ -16,6 +14,8 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import LinearProgress from '@mui/material/LinearProgress';
 
 
 function BeatForm({ user, genres, beats, setBeats }) {
@@ -144,7 +144,7 @@ function BeatForm({ user, genres, beats, setBeats }) {
             <Grid container spacing={2} sx={{border: '2px dashed #001c55', mt: '20px', mb: '20px', padding: '20px'}}>
                 <Snackbar open={open} autoHideDuration={6000} onClose={() => setOpen(!open)}>
                     <Alert variant='outlined' onClose={() => setOpen(!open)} severity='success' sx={{width: '100%'}}>
-                        {imageUrl ? 'Image Uploaded' : 'File upload successful!'}
+                        {imageUrl ? 'Image Uploaded!' : 'File upload successful!'}
                     </Alert>
                 </Snackbar>
                 <Grid item xs={6} sx={imageUrl ? 

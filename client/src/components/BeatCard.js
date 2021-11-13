@@ -31,7 +31,7 @@ function BeatCard({ user, beat, foundLike, handleLikeClick, handleAddToCart }) {
             <>
                 <br></br>
                     <Card key={beat.id} sx={{bgcolor: '#000000', padding: '20px', border: '2px solid #222222', '&:hover': {border: '2px solid #333333'}}}>
-                    <Grid container spacing={2}>
+                    <Grid container>
                         <Grid item xs={12} sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                             <Avatar src={beat.user.avatar_url} sx={{mr: '10px'}}/>
                             <strong>{beat.user.username}</strong>

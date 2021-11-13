@@ -105,11 +105,13 @@ function App() {
 
 
   function handleBeatDelete(id){
-    fetch(`/beats/${id}`, {
-        method: 'DELETE'
-    })
-    setBeats(beats.filter(beat => beat.id !== id))
-    history.push(`/${user.username}`)
+    if (window.confirm('Are you sure you want to delete this beat?')){
+      fetch(`/beats/${id}`, {
+          method: 'DELETE'
+      })
+      setBeats(beats.filter(beat => beat.id !== id))
+      history.push(`/${user.username}`)
+    }
   }
 
 
