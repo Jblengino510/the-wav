@@ -12,6 +12,7 @@ import ScrollToTop from './ScrollToTop';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import { ParallaxProvider } from 'react-scroll-parallax';
+import BeatDetails from './User/BeatDetails';
 
 const theme = createTheme({
   palette: {
@@ -207,6 +208,9 @@ function App() {
           <ScrollToTop />
           <NavBar user={user} handleSignOut={handleSignOut}/>
           <Switch>
+            <Route path='/beats/:id'>
+              <BeatDetails genres={genres} likes={likes} handleBeatDelete={handleBeatDelete} handlePlayClick={handlePlayClick} handleLikeClick={handleLikeClick}/>
+            </Route>
             <Route path='/beats'>
               <BeatLibrary user={user} beats={beats} likes={likes} handleLikeClick={handleLikeClick} handleAddToCart={handleAddToCart}/>
             </Route>

@@ -29,7 +29,7 @@ function BeatCard({ user, beat, foundLike, handleLikeClick, handleAddToCart }) {
         <>
             {user ?
             <>
-                <br></br>
+                <br />
                     <Card key={beat.id} sx={{bgcolor: '#000000', padding: '20px', border: '2px solid #222222', '&:hover': {border: '2px solid #333333'}}}>
                     <Grid container>
                         <Grid item xs={12} sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
@@ -44,13 +44,17 @@ function BeatCard({ user, beat, foundLike, handleLikeClick, handleAddToCart }) {
                             <Box sx={{ display: 'flex', flexDirection: 'column'}}>
                             <CardContent>
                                 <Link to={`/${beat.user.username}/${beat.id}`}>
-                                <Typography variant='h5' color='secondary' sx={{'&:hover': {textDecoration: 'underline'}}}><strong>{beat.name}</strong></Typography>
+                                <Typography variant='h5' color='secondary' sx={{'&:hover': {textDecoration: 'underline'}}}>
+                                    <strong>{beat.name}</strong>
+                                </Typography>
                                 </Link>
-                                <br></br>
+                                <br />
                                 <Typography variant='body1'>{beat.genre.name}</Typography>
-                                <br></br>
-                                <Typography variant='body1'><strong>{beat.tempo} BPM</strong></Typography>
-                                <br></br>
+                                <br />
+                                <Typography variant='body1'>
+                                    <strong>{beat.tempo} BPM</strong>
+                                </Typography>
+                                <br />
                                 {beat.is_sold ? 
                                 <Tooltip title='Sorry, somebody already bought this beat' placement='bottom-start' arrow>
                                     <Button variant='contained'>
@@ -86,8 +90,9 @@ function BeatCard({ user, beat, foundLike, handleLikeClick, handleAddToCart }) {
                     </Card>
             </>
             :
+            //IF no user signed in
             <>
-                <br></br>
+                <br />
                     <Card key={beat.id} sx={{bgcolor: '#000000', padding: '20px', border: '2px solid #222222', '&:hover': {border: '2px solid #333333'}}}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
@@ -101,14 +106,14 @@ function BeatCard({ user, beat, foundLike, handleLikeClick, handleAddToCart }) {
                         <Grid item xs={10}>
                             <Box sx={{ display: 'flex', flexDirection: 'column'}}>
                             <CardContent>
-                                <Link to={`/${beat.user.username}/${beat.id}`}>
+                                <Link to={`/beats/${beat.id}`}>
                                 <Typography variant='h5' color='secondary' sx={{'&:hover': {textDecoration: 'underline'}}}><strong>{beat.name}</strong></Typography>
                                 </Link>
-                                <br></br>
+                                <br />
                                 <Typography variant='body1'>{beat.genre.name}</Typography>
-                                <br></br>
+                                <br />
                                 <Typography variant='body1'><strong>{beat.tempo} BPM</strong></Typography>
-                                <br></br>
+                                <br />
                                 {beat.is_sold ? 
                                 <Tooltip title='Sorry, somebody already bought this beat' placement='bottom-start' arrow>
                                     <Button variant='contained'>

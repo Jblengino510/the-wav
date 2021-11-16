@@ -39,7 +39,7 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
     const [ playClicked, setPlayClicked ] = useState(false)
     const params = useParams()
     let genreArr = genres
-    let foundLike = likes.find(like => like.beat_id === beat.id)
+    let foundLike = likes.find(like => like.beat_id === beat.id) 
 
 
     useEffect(() => {
@@ -49,7 +49,7 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
                 res.json().then(data => setBeat(data))
             }
         })
-    }, [likes])
+    }, [])
 
 
     function handleEditBeat(){
@@ -100,7 +100,7 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
         <Container sx={{mt: '100px'}}>
             {beat.genre ?
             <>
-                <br></br>
+                <br />
                 <Card key={beat.id} sx={{display: 'flex', bgcolor: '#000000', padding: '20px', border: '2px solid #222222', '&:hover': {border: '2px solid #333333'}}}>
                 <Grid container>
                     <Grid item xs={2}>
@@ -124,7 +124,7 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
                                 </Typography>
                                 </Box>
                                 <br />
-                                <Typography variant='body1'>{beat.genre.name}</Typography>
+                                <Typography variant='body1'>{beat.genre.name}</Typography> 
                                 <br />
                                 <Typography variant='body1'>
                                     <strong>{beat.tempo} BPM</strong>
