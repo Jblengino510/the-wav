@@ -174,12 +174,18 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
                 </Card>
                 <br />
                 <br />
+                {user ?
+                <>
                 <Button size='large'  variant='contained' onClick={() => setOpen(true)} sx={{mr: '20px'}}>
                     Edit
                 </Button>
                 <Button size='large' variant='contained' onClick={() => handleBeatDelete(beat.id)}>
                     Delete
                 </Button>
+                </>
+                :
+                null
+                }
                 <Modal 
                 open={open} 
                 onClose={!open} 
