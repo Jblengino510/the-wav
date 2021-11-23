@@ -43,7 +43,7 @@ function BeatCard({ user, beat, foundLike, handleLikeClick, handleAddToCart }) {
                         <Grid item xs={10}>
                             <Box sx={{ display: 'flex', flexDirection: 'column'}}>
                             <CardContent>
-                                <Link to={`/${beat.user.username}/${beat.id}`}>
+                                <Link to={beat.user.id === user.id ? `/${beat.user.username}/${beat.id}` : `/beats/${beat.id}`}>
                                 <Typography variant='h5' color='secondary' sx={{'&:hover': {textDecoration: 'underline'}}}>
                                     <strong>{beat.name}</strong>
                                 </Typography>

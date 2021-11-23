@@ -40,7 +40,7 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
     const params = useParams()
     let genreArr = genres
     let foundLike = likes.find(like => like.beat_id === beat.id) 
-
+  
 
     useEffect(() => {
         fetch(`/beats/${params.id}`)
@@ -94,6 +94,7 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
         setPlayClicked(!playClicked)
         handlePlayClick(beat)
     }
+
 
 
     return (
@@ -219,7 +220,7 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
             </>
             :
             null
-            }
+            } 
         </Container>
     )
 }

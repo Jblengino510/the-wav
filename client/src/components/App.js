@@ -181,6 +181,9 @@ function App() {
           <ScrollToTop />
           <NavBar user={user} handleSignOut={handleSignOut}/>
           <Switch>
+            <Route path='/beats/:id'>
+              <BeatDetails genres={genres} likes={likes} handleBeatDelete={handleBeatDelete} handlePlayClick={handlePlayClick} handleLikeClick={handleLikeClick}/>
+            </Route>
             <Route path='/beats'>
               <BeatLibrary user={user} beats={beats} likes={likes} handleLikeClick={handleLikeClick} handleAddToCart={handleAddToCart}/>
             </Route>
