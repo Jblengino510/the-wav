@@ -22,8 +22,8 @@ import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
-import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import Tooltip from '@mui/material/Tooltip';
+import Avatar from '@mui/material/Avatar';
 
 
 
@@ -38,6 +38,7 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
     const [ likeClicked, setLikeClicked ] = useState(false)
     const [ playClicked, setPlayClicked ] = useState(false)
     const params = useParams()
+    const options = { year: 'numeric', month: 'long' };
     let genreArr = genres
     let foundLike = likes.find(like => like.beat_id === beat.id) 
   
@@ -104,6 +105,11 @@ function BeatDetails({ user, genres, likes, handleBeatDelete, handlePlayClick, h
                 <br />
                 <Card key={beat.id} sx={{display: 'flex', bgcolor: '#000000', padding: '20px', border: '2px solid #222222', '&:hover': {border: '2px solid #333333'}}}>
                 <Grid container>
+                    <Grid item xs={12} sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                        <Avatar src={beat.user.avatar_url} sx={{mr: '10px'}}/>
+                        <strong>{beat.user.username}</strong>
+                        <Typography variant='body1'>&nbsp;&nbsp;&nbsp;Released {new Intl.DateTimeFormat('en-US', options).format(Date.parse(beat.created_at))}</Typography>
+                    </Grid>
                     <Grid item xs={2}>
                         <CardMedia component='image' image={beat.image_url ? beat.image_url : '/iphonewav.jpg'} sx={{width: '200px', height: '200px', mt: '20px', padding: '10px'}}/>
                     </Grid>

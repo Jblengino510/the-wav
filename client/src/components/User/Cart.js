@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -14,8 +14,12 @@ import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+
 
 function Cart({ carts, setCarts, handleDeleteFromCart }) {
+    const [ open, setOpen ] = useState(false)
     const unsoldBeats = carts ? carts.filter(item => item.beat.is_sold === false) : null
    
 
@@ -35,6 +39,7 @@ function Cart({ carts, setCarts, handleDeleteFromCart }) {
             })
             //deletes cart instance
             .then(handleDeleteFromCart(beat.id))
+            .then(setOpen(true))
         })}
     }
 
@@ -44,6 +49,11 @@ function Cart({ carts, setCarts, handleDeleteFromCart }) {
             <Typography variant='h3' sx={{mt: '20px', mb: '20px', paddingTop: '20px'}}>Checkout</Typography>
             <Divider sx={{bgcolor: '#222222', mt: '20px', mb: '20px'}}/>
             <Grid container>
+                <Snackbar open={open} autoHideDuration={6000} onClose={() => setOpen(!open)}>
+                    <Alert variant='outlined' onClose={() => setOpen(!open)} severity='success' sx={{width: '100%'}}>
+                        Purchase successful!
+                    </Alert>
+                </Snackbar>
                 <Grid item xs={12}>
                     <Box>
                         <TableContainer>

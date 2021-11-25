@@ -66,7 +66,9 @@ function NavBar({ user, handleSignOut }) {
             <>
                 <AppBar position='fixed' sx={{bgcolor: '#000000', color: 'white', width: '100%', padding: '10px'}}>
                     <Toolbar>
-                        <img src='/the-wav-logo-2.jpg' alt='The Wav Logo' width='250px'/>
+                        <Link to='/'>
+                        <img src='/the-wav-logo.jpg' alt='The Wav Logo' width='250px'/>
+                        </Link>
                         <Box sx={{flexGrow: 1}}></Box>
                         <Box sx={{}}>
                             <Tabs value={value} onChange={handleChange} textColor='secondary' indicatorColor='primary'>
@@ -155,9 +157,10 @@ function NavBar({ user, handleSignOut }) {
             <>
                 <AppBar position='fixed' sx={{bgcolor: '#000000', color: 'white', width: '100%', padding: '10px'}}>
                     <Toolbar>
-                        <img src='/the-wav-logo-2.jpg' alt='The Wav Logo' width='250px'/>
+                        <Link to='/'>
+                        <img src='/the-wav-logo.jpg' alt='The Wav Logo' width='250px'/>
+                        </Link>
                         <Box sx={{flexGrow: 1}}></Box>
-                        {/* <img src='/waveform.png' alt='wav logo' width='50px' height='50px'/> */}
                         <Box sx={{}}>
                             <Tabs value={value} onChange={handleChange} textColor='secondary' indicatorColor='primary'>
                                 <LinkTab label={<strong>Home</strong>} onClick={() => history.push('/')} sx={{color: 'white'}}/>
