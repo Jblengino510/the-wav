@@ -66,14 +66,8 @@ function NavBar({ user, handleSignOut }) {
             <>
                 <AppBar position='fixed' sx={{bgcolor: '#000000', color: 'white', width: '100%', padding: '10px'}}>
                     <Toolbar>
-                        <Button component={Link} to='/' color='secondary'>
-                            <Typography variant='h4'>
-                                <strong>∿ The Wav ∿</strong>
-                            </Typography>
-                        </Button>
+                        <img src='/the-wav-logo-2.jpg' alt='The Wav Logo' width='250px'/>
                         <Box sx={{flexGrow: 1}}></Box>
-                        {/* <img src='/waveform.png' alt='wav logo' width='100px' height='100px'/>
-                        <CardMedia component='image' image={'/waveform.png'} sx={{width: '150px', height: '150px', mt: '20px', padding: '10px'}}/> */}
                         <Box sx={{}}>
                             <Tabs value={value} onChange={handleChange} textColor='secondary' indicatorColor='primary'>
                                 <LinkTab label={<strong>Home</strong>} onClick={() => history.push('/')} sx={{color: 'white'}}/>
@@ -82,7 +76,7 @@ function NavBar({ user, handleSignOut }) {
                             </Tabs>
                         </Box>
                         <Button onClick={() => history.push(`/${user.username}/upload`)} variant='contained' color='primary' startIcon={<AddIcon fontSize='medium'/>} sx={{mr: '15px', ml: '10px'}}>
-                        <strong>Upload</strong>
+                            <strong>Upload</strong>
                         </Button>
                         <IconButton
                         size='large'
@@ -138,14 +132,14 @@ function NavBar({ user, handleSignOut }) {
                                 </ListItemIcon>
                                 Insights
                             </MenuItem>
-                            <br></br>
+                            <br />
                             <MenuItem sx={{bgcolor: '#000000',  paddingRight: '50px', '&:hover': {backgroundColor: '#111111'}}} onClick={() => history.push(`/${user.username}/settings`)}>
                                 <ListItemIcon>
                                     <Settings fontSize="medium" color='secondary'/>
                                 </ListItemIcon>
                                 Settings
                             </MenuItem>
-                            <br></br>
+                            <br />
                             <MenuItem sx={{bgcolor: '#000000',  paddingRight: '50px', '&:hover': {backgroundColor: '#111111'}}} onClick={handleSignOut}>
                                 <ListItemIcon>
                                     <PowerSettingsNew fontSize="medium" color='secondary'/>
@@ -161,11 +155,7 @@ function NavBar({ user, handleSignOut }) {
             <>
                 <AppBar position='fixed' sx={{bgcolor: '#000000', color: 'white', width: '100%', padding: '10px'}}>
                     <Toolbar>
-                        <Button component={Link} to='/' color='secondary'>
-                            <Typography variant='h4'>
-                                <strong>∿ The Wav ∿</strong>
-                            </Typography>
-                        </Button>
+                        <img src='/the-wav-logo-2.jpg' alt='The Wav Logo' width='250px'/>
                         <Box sx={{flexGrow: 1}}></Box>
                         {/* <img src='/waveform.png' alt='wav logo' width='50px' height='50px'/> */}
                         <Box sx={{}}>
